@@ -5,7 +5,7 @@
 
 <tr>
   <td>
-    <a href="/users/{user.key}">
+    <a href="/users/{user.id}">
       {user.username}
     </a>
   </td>
@@ -13,6 +13,6 @@
     {user.name || '--'}
   </td>
   <td>
-    <EditButton url="/users/edit/{user.key}" />
+    <EditButton url="/users/edit/{user.id}" />
   </td>
 </tr>

@@ -10,14 +10,14 @@
   import DeleteThing from '$lib/DeleteThing.svelte'
 
   export let errors = ''
-  const key = $page.params.id
+  const id = $page.params.id
   let loadUser
   let loading
 
   onMount(async () => {
     loading = true
     try {
-      loadUser = await users.get(key)
+      loadUser = await users.get(id)
     } catch (error) {
       errors = error
     } finally {
@@ -25,7 +25,7 @@
     }
   })
 
-  $: user = $users.find((u) => u.key === key)
+  $: user = $users.find((u) => u.id === id)
 
   const onSubmit = async () => {
     await users.patch(user)
@@ -54,13 +54,13 @@
         <input type="checkbox" bind:checked={user.isAdmin} class="checkbox" />
       </label>
     </div>
-    <input hidden value={user.key} name="key" />
+    <input hidden value={user.id} name="id" />
   </Form>
 
   <DeleteThing
     thingName="User {user.username}"
     deleteFunction={() => {
-      users.remove(user.key)
+      users.remove(user.id)
     }}
     referrer="/users"
   />

@@ -1,19 +1,16 @@
 {
-  "name": "babytron-website",
+  "name": "babytron",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "vite dev",
     "preview": "vite preview",
     "build": "vite build",
-    "upload": "upload-oss --output-dir build --clean",
-    "deploy": "npm run build && npm run upload",
     "lint": "eslint --ignore-path .gitignore src --fix"
   },
   "devDependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@graphql-tools/schema": "^9.0.13",
-    "@jarvisniu/upload-oss": "^1.1.1",
+    "@graphql-eslint/eslint-plugin": "^3.14.3",
     "@sveltejs/adapter-auto": "^1.0.2",
     "@sveltejs/adapter-netlify": "^1.0.0-next.88",
     "@sveltejs/adapter-static": "^1.0.5",
@@ -28,20 +25,28 @@
     "eslint-plugin-security": "^1.6.0",
     "eslint-plugin-svelte3": "^4.0.0",
     "eslint-plugin-unicorn": "^45.0.2",
-    "graphql-middleware": "^6.1.33",
-    "graphql-scalars": "^1.20.1",
-    "graphql-shield": "^7.6.5",
     "nanoid": "^4.0.0",
     "postcss": "^8.4.21",
     "postcss-load-config": "^4.0.1",
     "prettier": "^2.8.3",
     "prettier-plugin-svelte": "^2.9.0",
+    "prisma": "^4.9.0",
     "stylelint-config-recommended": "^9.0.0",
     "svelte": "^3.54.0",
     "svelte-fa": "^3.0.3",
     "tailwindcss": "^3.2.4",
     "vite": "^4.0.0",
     "vite-plugin-graphql-strings": "^0.3.0"
+  },
+  "dependencies": {
+    "@graphql-tools/schema": "^9.0.13",
+    "@prisma/client": "^4.9.0",
+    "cookie": "^0.5.0",
+    "dotenv": "^16.0.3",
+    "fast-jwt": "^2.1.0",
+    "graphql-middleware": "^6.1.33",
+    "graphql-scalars": "^1.20.1",
+    "graphql-shield": "^7.6.5"
   },
   "type": "module"
 }

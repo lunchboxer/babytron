@@ -16,34 +16,31 @@ function createUsersStore() {
     set,
     subscribe,
     // Get //
-    get: async function (key) {
-      if (key) {
-        const response = await request(USER, { key })
+    get: async function (id) {
+      if (id) {
+        const response = await request(USER, { id })
         this.updateOne(response.user)
         return response.user
       }
       const response = await request(USERS)
       response && set(response.users)
     },
-    count: async () => {
-      const response = await request(USER_COUNT)
-      return response.userCount
-    },
     // Create //
     create: async (user) => {
       const response = await request(CREATE_USER, { input: { ...user } })
       console.log(response)
       update((existing) => [...existing, response.createUser])
+      this.getUserCount()
     },
     updateOne: async function (user) {
       const meUser = get(me)
-      if (user.key === meUser.key) {
+      if (user.id === meUser.id) {
         await me.set({ ...user })
       }
       update((existing) => {
         let sawUser = false
         const previousUsers = existing.map((u) => {
-          if (u.key !== user.key) return u
+          if (u.id !== user.id) return u
           sawUser = true
           return user
         })
@@ -60,13 +57,22 @@ function createUsersStore() {
       this.updateOne(response.updateUser)
     },
     // Remove //
-    remove: async (key) => {
-      await request(DELETE_USER, { key })
-      update((existing) => existing.filter((u) => u.key !== key))
+    remove: async (id) => {
+      await request(DELETE_USER, { id })
+      update((existing) => existing.filter((u) => u.id !== id))
       const meUser = get(me)
-      if (key === meUser.key) me.set({})
+      if (id === meUser.id) me.set({})
+      this.getCount()
+    },
+    // Get Count //
+    getCount: async () => {
+      const response = await request(USER_COUNT)
+      userCount.set(response.userCount)
+      return response.userCount
     },
   }
 }
 
 export const users = createUsersStore()
+
+export const userCount = writable()

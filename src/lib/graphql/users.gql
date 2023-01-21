@@ -8,26 +8,14 @@ query Users {
   }
 }
 
-query User($key: ID!) {
-  user(key: $key) {
+query User($id: ID!) {
+  user(id: $id) {
     ...AllUserFields
   }
 }
 mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
-    token
-    user {
-      ...AllUserFields
-    }
-  }
-}
-
-mutation Login($username: String!, $password: String!) {
-  login(username: $username, password: $password) {
-    token
-    user {
-      ...AllUserFields
-    }
+    ...AllUserFields
   }
 }
 
@@ -37,16 +25,18 @@ mutation UpdateUser($input: UpdateUserInput!) {
   }
 }
 
-mutation DeleteUser($key: ID!) {
-  deleteUser(key: $key) {
-    key
+mutation DeleteUser($id: ID!) {
+  deleteUser(id: $id) {
+    id
   }
 }
 
 fragment AllUserFields on User {
-  key
+  id
   username
   email
   name
   isAdmin
+  createdAt
+  updatedAt
 }

@@ -5,7 +5,7 @@
 </script>
 
 <nav class="navbar bg-base-100 lg:hidden">
-  {#if $me?.key}
+  {#if $me?.id}
     <div class="flex-none">
       <label for="my-drawer" class="btn btn-square btn-ghost drawer-button">
         <MenuHamburgerIcon />

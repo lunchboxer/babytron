@@ -23,7 +23,7 @@ export async function handler(query, variables, user) {
 
   const result = await graphql({
     schema: schemaWithPermissions,
-    source: document,
+    source: query,
     contextValue,
     variableValues: variables,
   })

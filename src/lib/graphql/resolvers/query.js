@@ -1,19 +1,28 @@
-import { count, get } from '@begin/data'
 import { GraphQLError } from 'graphql'
 
 export const Query = {
-  userCount: async () => {
-    return await count({ table: 'users' })
-  },
   me: async (_, parameters, context) => {
-    return context.user
+    const { user } = context
+    if (!user) {
+      throw new GraphQLError("Requested authenticated user doesn't exists.")
+    }
+    return user
   },
-  user: async (_, { key }) => {
-    const foundUser = await get({ table: 'users', key })
+
+  user: async (_, { id }, context) => {
+    const foundUser = await context.prisma.user.findUnique({
+      where: { id },
+    })
     if (!foundUser) throw new GraphQLError('User not found.')
     return foundUser
   },
-  users: async () => {
-    return await get({ table: 'users' })
+
+  users: (_, parameters, context) => {
+    return context.prisma.user.findMany()
+  },
+
+  userCount: async (_, parameters, { prisma }) => {
+    const count = await prisma.user.aggregate({ _count: { id: true } })
+    return count._count.id
   },
 }

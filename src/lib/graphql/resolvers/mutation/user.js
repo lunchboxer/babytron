@@ -1,26 +1,5 @@
-const { get, set, destroy, count } = require('@begin/data')
-const { scryptSync, randomBytes } = require('node:crypto')
-const { createSigner } = require('fast-jwt')
-
-const { GraphQLError } = require('graphql')
-
-const sign = createSigner({ key: process.env.JWT_SECRET })
-
-async function forceUniqueEmail(email) {
-  const allUsers = await get({ table: 'users' })
-  const sameEmailUser = allUsers.find(aUser => aUser.email === email)
-  if (sameEmailUser) {
-    throw new GraphQLError('A user with that email already exists.')
-  }
-}
-
-async function forceUniqueUsername(username) {
-  const allUsers = await get({ table: 'users' })
-  const sameUsernameUser = allUsers.find(aUser => aUser.username === username)
-  if (sameUsernameUser) {
-    throw new GraphQLError('A user with that username already exists.')
-  }
-}
+import { scryptSync, randomBytes } from 'node:crypto'
+import { GraphQLError } from 'graphql'
 
 function encryptPassword(password, salt) {
   return scryptSync(password, salt, 32).toString('hex')
@@ -30,61 +9,29 @@ function hashPassword(password) {
   return encryptPassword(password, salt) + salt
 }
 
-function passwordMatches(password, hash) {
-  const salt = hash.slice(64)
-  const originalPassHash = hash.slice(0, 64)
-  const currentPassHash = encryptPassword(password, salt)
-  return originalPassHash === currentPassHash
-}
-
-module.exports.user = {
+export const user = {
   createUser: async (_, { input }, context) => {
     const { password, ...parameters } = input
-    if (parameters.email) await forceUniqueEmail(parameters.email)
-    await forceUniqueUsername(parameters.username)
     const hashedPassword = hashPassword(password)
-    const isAdmin = !(await count({ table: 'users' }))
-    const user = await set({
-      table: 'users',
-      password: hashedPassword,
-      isAdmin,
-      ...parameters,
+    const usernameTaken = await context.prisma.user.findFirst({
+      where: { username: parameters.username },
     })
-    return {
-      token: sign({ userId: user.key }, process.env.JWT_SECRET),
-      user,
-    }
+    if (usernameTaken) throw new GraphQLError('Username already exists')
+    return context.prisma.user.create({
+      data: {
+        ...parameters,
+        password: hashedPassword,
+      },
+    })
   },
-  login: async (_, { username, password }) => {
-    const users = await get({ table: 'users' })
-    const user = users.find(u => u.username === username)
-    if (!user) throw new GraphQLError(`Username '${username}' not found.`)
-    if (!passwordMatches(password, user.password)) {
-      throw new GraphQLError('Username or password invalid')
-    }
-    return {
-      token: sign({ userId: user.key }),
-      user,
-    }
+
+  updateUser: async (_, { input }, { prisma }) => {
+    const { id, ...data } = input
+    return prisma.user.update({
+      where: { id },
+      data,
+    })
   },
-  deleteUser: async (_, { key }, context) => {
-    const user = await get({ table: 'users', key })
-    if (!user) throw new GraphQLError('User not found.')
-    await destroy({ table: 'users', key })
-    return user
-  },
-  updateUser: async (_, { input }) => {
-    const { key, ...data } = input
-    const user = await get({ table: 'users', key })
-    if (!user) throw new GraphQLError('User not found.')
-    const updatedUser = { ...user, ...data }
-    if (data.email && data.email !== user.email) {
-      await forceUniqueEmail(data.email)
-    }
-    if (data.username && data.username !== user.username) {
-      await forceUniqueUsername(data.username)
-    }
-    await set({ ...updatedUser })
-    return updatedUser
-  },
+
+  deleteUser: (_, { id }, { prisma }) => prisma.user.delete({ where: { id } }),
 }

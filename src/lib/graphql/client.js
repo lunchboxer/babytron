@@ -17,14 +17,10 @@ export const request = async (query, variables, fetchFun) => {
     typeof query === 'function'
       ? query(variables)
       : JSON.stringify({ query, variables: removeEmptyStrings(variables) })
-  const coldAuth =
-    typeof localStorage !== 'undefined' && localStorage.getItem('token')
-  const token = coldAuth ? JSON.parse(coldAuth) : undefined
   const response = await fetchFunction(environment.endpoint, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      authorization: token || '',
     },
     body,
   })

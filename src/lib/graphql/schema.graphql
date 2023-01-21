@@ -1,33 +1,28 @@
-scalar Date
 scalar DateTime
 scalar EmailAddress
 
-type AuthPayload {
-  token: String
-  user: User
-}
-
 type Mutation {
-  createUser(input: CreateUserInput!): AuthPayload
-  login(username: String!, password: String!): AuthPayload
-  deleteUser(key: ID!): User
+  createUser(input: CreateUserInput!): User
+  deleteUser(id: ID!): User
   updateUser(input: UpdateUserInput!): User
 }
 
 type Query {
   me: User
-  user(key: ID!): User
+  user(id: ID!): User
   userCount: Int
   users: [User]
 }
 
 type User {
-  key: ID
+  id: ID!
   username: String!
   email: EmailAddress
   isVerified: Boolean
   name: String
   isAdmin: Boolean!
+  createdAt: DateTime
+  updatedAt: DateTime
 }
 
 input CreateUserInput {
@@ -39,7 +34,7 @@ input CreateUserInput {
 }
 
 input UpdateUserInput {
-  key: ID!
+  id: ID!
   username: String
   email: EmailAddress
   name: String

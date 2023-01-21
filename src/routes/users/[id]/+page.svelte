@@ -8,9 +8,9 @@
   let user
 
   onMount(async () => {
-    const key = $page.params.id
+    const id = $page.params.id
     try {
-      user = await users.get(key)
+      user = await users.get(id)
     } catch (error) {
       errors = error
     }

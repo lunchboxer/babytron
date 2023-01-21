@@ -1,6 +1,6 @@
 <script>
   import { me } from '$lib/data/me.js'
-  import { users } from '$lib/data/users.js'
+  import { userCount } from '$lib/data/users.js'
   import { notifications } from '$lib/notifications'
   import { goto } from '$app/navigation'
   import Logo from '$lib/Logo.svelte'
@@ -15,7 +15,7 @@
   export let checked = ''
 
   const logout = async () => {
-    if (!$me?.key) {
+    if (!$me?.id) {
       notifications.add({
         text: 'Cannot log out. User not logged in.',
         type: 'error',
@@ -46,16 +46,14 @@
     <Logo />
     <div class="divider" />
     <!-- Sidebar content here -->
-    {#if $me?.key}
+    {#if $me?.id}
       {#if $me?.isAdmin}
         <li class="m-1 gap-2">
           <a href="/users">
             <Fa icon={faUsers} />
             Users
-            {#if $users}
-              {#await users.count() then count}
-                <div class="badge">{count}</div>
-              {/await}
+            {#if $userCount !== undefined}
+              <div class="badge">{$userCount}</div>
             {/if}
           </a>
         </li>

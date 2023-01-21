@@ -8,7 +8,7 @@
 
 <h1>User Profile</h1>
 
-{#if $me?.key}
+{#if $me?.id}
   <div class="overflow-x-auto">
     <table class="table w-full">
       <!-- head -->
@@ -26,7 +26,7 @@
         </tr>
         <tr>
           <td>ID</td>
-          <td>{$me.key}</td>
+          <td>{$me.id}</td>
         </tr>
         <tr>
           <td>username</td>
@@ -40,5 +40,5 @@
     </table>
   </div>
 
-  <a href="users/edit/{$me.key}" class="btn">Edit</a>
+  <a href="users/edit/{$me.id}" class="btn">Edit</a>
 {/if}
