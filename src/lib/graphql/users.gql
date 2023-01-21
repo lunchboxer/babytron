@@ -1,0 +1,52 @@
+query UserCount {
+  userCount
+}
+
+query Users {
+  users {
+    ...AllUserFields
+  }
+}
+
+query User($key: ID!) {
+  user(key: $key) {
+    ...AllUserFields
+  }
+}
+mutation CreateUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    token
+    user {
+      ...AllUserFields
+    }
+  }
+}
+
+mutation Login($username: String!, $password: String!) {
+  login(username: $username, password: $password) {
+    token
+    user {
+      ...AllUserFields
+    }
+  }
+}
+
+mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    ...AllUserFields
+  }
+}
+
+mutation DeleteUser($key: ID!) {
+  deleteUser(key: $key) {
+    key
+  }
+}
+
+fragment AllUserFields on User {
+  key
+  username
+  email
+  name
+  isAdmin
+}
