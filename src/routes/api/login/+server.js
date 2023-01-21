@@ -5,7 +5,6 @@ import { createSigner } from 'fast-jwt'
 import { dev } from '$app/environment'
 import 'dotenv/config'
 
-console.log('secret is', process.env.JWT_SECRET)
 const sign = createSigner({ key: process.env.JWT_SECRET })
 
 const encryptPassword = (password, salt) => {

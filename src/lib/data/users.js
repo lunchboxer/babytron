@@ -26,9 +26,8 @@ function createUsersStore() {
       response && set(response.users)
     },
     // Create //
-    create: async (user) => {
+    create: async function (user) {
       const response = await request(CREATE_USER, { input: { ...user } })
-      console.log(response)
       update((existing) => [...existing, response.createUser])
       this.getUserCount()
     },
@@ -57,7 +56,7 @@ function createUsersStore() {
       this.updateOne(response.updateUser)
     },
     // Remove //
-    remove: async (id) => {
+    remove: async function (id) {
       await request(DELETE_USER, { id })
       update((existing) => existing.filter((u) => u.id !== id))
       const meUser = get(me)

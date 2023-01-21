@@ -5,7 +5,6 @@ import { getUserFromCookies } from '$lib/data/server-utils.js'
 export async function handle({ event, resolve }) {
   const cookieHeader = event.request.headers.get('cookie')
   const cookies = cookie.parse(cookieHeader ?? '')
-  console.log('cookies', cookies)
   event.locals.user = await getUserFromCookies(cookies)
   return await resolve(event)
 }

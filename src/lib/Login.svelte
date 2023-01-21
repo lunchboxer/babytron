@@ -30,7 +30,6 @@
       type: 'success',
       text: `Created initial admin user: ${username}`,
     })
-    goto('/')
   }
 
   const createOnError = () => {
