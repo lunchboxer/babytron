@@ -4,7 +4,7 @@
   import { notifications } from '$lib/notifications'
   import { goto } from '$app/navigation'
   import Logo from '$lib/Logo.svelte'
-  import Fa from 'svelte-fa'
+  import NavItem from '$lib/NavItem.svelte'
   import {
     faUsers,
     faAddressCard,
@@ -48,34 +48,11 @@
     <!-- Sidebar content here -->
     {#if $me?.id}
       {#if $me?.isAdmin}
-        <li class="m-1 gap-2">
-          <a href="/users">
-            <Fa icon={faUsers} />
-            Users
-            {#if $userCount !== undefined}
-              <div class="badge">{$userCount}</div>
-            {/if}
-          </a>
-        </li>
+        <NavItem count={$userCount} icon={faUsers} label="Users" url="/users" />
       {/if}
-      <li class="m-1 gap-2">
-        <a href="/me">
-          <Fa icon={faAddressCard} />
-          Profile
-        </a>
-      </li>
-      <li class="m-1 gap-2">
-        <a href="/" on:click={logout}>
-          <Fa icon={faPersonThroughWindow} />
-          Log out
-        </a>
-      </li>
+      <NavItem icon={faAddressCard} label="Profile" url="/me" />
+      <NavItem icon={faPersonThroughWindow} label="Log out" action={logout} />
     {/if}
-    <li class="m-1 gap-2">
-      <a href="/settings">
-        <Fa icon={faSliders} />
-        Settings
-      </a>
-    </li>
+    <NavItem icon={faSliders} label="Settings" url="/settings" />
   </ul>
 </div>
