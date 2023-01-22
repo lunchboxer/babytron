@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "vite dev",
     "preview": "vite preview",
-    "build": "vite build",
-    "lint": "eslint --ignore-path .gitignore src --fix"
+    "build": "npm run generate && vite build",
+    "lint": "eslint --ignore-path .gitignore src --fix",
+    "generate": "prisma generate"
   },
   "devDependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
