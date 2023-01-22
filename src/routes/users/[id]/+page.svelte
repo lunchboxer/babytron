@@ -1,20 +1,11 @@
 <script>
-  import { page } from '$app/stores'
-  import { users } from '$lib/data/users.js'
-  import { onMount } from 'svelte'
   import Error from '$lib/Error.svelte'
+  import { users } from '$lib/data/users.js'
 
-  let errors = ''
-  let user
-
-  onMount(async () => {
-    const id = $page.params.id
-    try {
-      user = await users.get(id)
-    } catch (error) {
-      errors = error
-    }
-  })
+  export let data = {}
+  const { errors, loadUser } = data
+  users.updateOne(loadUser)
+  $: user = $users.find((u) => u.id === loadUser.id)
 </script>
 
 <Error {errors} />

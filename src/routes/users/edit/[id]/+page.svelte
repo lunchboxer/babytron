@@ -2,30 +2,15 @@
   import { notifications } from '$lib/notifications/index.js'
   import { users } from '$lib/data/users.js'
   import { goto } from '$app/navigation'
-  import { page } from '$app/stores'
-  import { onMount } from 'svelte'
   import Input from '$lib/Input.svelte'
   import Form from '$lib/Form.svelte'
   import Error from '$lib/Error.svelte'
   import DeleteThing from '$lib/DeleteThing.svelte'
 
-  export let errors = ''
-  const id = $page.params.id
-  let loadUser
-  let loading
-
-  onMount(async () => {
-    loading = true
-    try {
-      loadUser = await users.get(id)
-    } catch (error) {
-      errors = error
-    } finally {
-      loading = false
-    }
-  })
-
-  $: user = $users.find((u) => u.id === id)
+  export let data = {}
+  const { errors, loadUser } = data
+  users.updateOne(loadUser)
+  $: user = $users.find((u) => u.id === loadUser.id)
 
   const onSubmit = async () => {
     await users.patch(user)
@@ -64,6 +49,4 @@
     }}
     referrer="/users"
   />
-{:else if loading}
-  <p>loading user</p>
 {/if}
