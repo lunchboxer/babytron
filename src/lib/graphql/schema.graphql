@@ -5,6 +5,7 @@ type Mutation {
   createUser(input: CreateUserInput!): User
   deleteUser(id: ID!): User
   updateUser(input: UpdateUserInput!): User
+  changePassword(id: ID!, oldPassword: String, newPassword: String!): User
 }
 
 type Query {
