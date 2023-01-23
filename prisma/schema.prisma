@@ -14,8 +14,25 @@ model User {
   username   String   @unique
   name       String?
   password   String
+  fatherTo   Baby[]   @relation("father")
+  motherTo   Baby[]   @relation("mother")
   isAdmin    Boolean  @default(false)
   isVerified Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+}
+
+model Baby {
+  id              String   @id @default(cuid())
+  name            String?
+  alternativeName String?
+  birthdate       String?
+  dueDate         String?
+  gender          String?
+  mother          User?    @relation("mother", fields: [motherId], references: [id])
+  motherId        String?
+  father          User?    @relation("father", fields: [fatherId], references: [id])
+  fatherId        String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }

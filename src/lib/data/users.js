@@ -8,6 +8,7 @@ import {
   UPDATE_USER,
   CREATE_USER,
   DELETE_USER,
+  CHANGE_PASSWORD,
 } from '$graphql/users.gql'
 
 function createUsersStore() {
@@ -62,6 +63,10 @@ function createUsersStore() {
       const meUser = get(me)
       if (id === meUser.id) me.set({})
       this.getCount()
+    },
+    // Change Password //
+    changePassword: async function (id, oldPassword, newPassword) {
+      await request(CHANGE_PASSWORD, { id, oldPassword, newPassword })
     },
     // Get Count //
     getCount: async () => {

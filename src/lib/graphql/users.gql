@@ -31,12 +31,30 @@ mutation DeleteUser($id: ID!) {
   }
 }
 
+mutation ChangePassword($id: ID!, $oldPassword: String, $newPassword: String!) {
+  changePassword(
+    id: $id
+    oldPassword: $oldPassword
+    newPassword: $newPassword
+  ) {
+    id
+  }
+}
+
 fragment AllUserFields on User {
   id
   username
   email
   name
   isAdmin
+  fatherTo {
+    id
+    name
+  }
+  motherTo {
+    id
+    name
+  }
   createdAt
   updatedAt
 }

@@ -3,6 +3,8 @@
   import { nanoid } from 'nanoid'
   import { goto } from '$app/navigation'
   import Error from '$lib/Error.svelte'
+  import Fa from 'svelte-fa'
+  import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
   export let thingName = 'this'
   export let deleteFunction = () => {}
@@ -38,7 +40,10 @@
   <h2>Delete {thingName}</h2>
 
   <Error {errors} />
-  <label for={modalId} class="btn modal-button">Delete</label>
+  <label for={modalId} class="btn modal-button gap-2">
+    <Fa icon={faTrash} />
+    Delete
+  </label>
 {/if}
 
 <input type="checkbox" id={modalId} class="modal-toggle" />

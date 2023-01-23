@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
+      "check": "svelte-check",
     "preview": "vite preview",
     "build": "npm run generate && vite build",
     "lint": "eslint --ignore-path .gitignore src --fix",
@@ -15,7 +16,7 @@
     "@sveltejs/adapter-auto": "^1.0.2",
     "@sveltejs/adapter-netlify": "^1.0.0-next.88",
     "@sveltejs/adapter-static": "^1.0.5",
-    "@sveltejs/kit": "^1.2.0",
+    "@sveltejs/kit": "^1.2.2",
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.13",
     "daisyui": "^2.47.0",
@@ -34,6 +35,7 @@
     "prisma": "^4.9.0",
     "stylelint-config-recommended": "^9.0.0",
     "svelte": "^3.54.0",
+    "svelte-check": "^3.0.2",
     "svelte-fa": "^3.0.3",
     "tailwindcss": "^3.2.4",
     "vite": "^4.0.0",
@@ -45,6 +47,7 @@
     "cookie": "^0.5.0",
     "dotenv": "^16.0.3",
     "fast-jwt": "^2.1.0",
+    "graphql": "^16.6.0",
     "graphql-middleware": "^6.1.33",
     "graphql-scalars": "^1.20.1",
     "graphql-shield": "^7.6.5"

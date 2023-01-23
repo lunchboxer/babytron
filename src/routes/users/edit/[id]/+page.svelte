@@ -6,6 +6,7 @@
   import Form from '$lib/Form.svelte'
   import Error from '$lib/Error.svelte'
   import DeleteThing from '$lib/DeleteThing.svelte'
+  import ChangePassword from '$lib/ChangePassword.svelte'
 
   export let data = {}
   const { errors, loadUser } = data
@@ -41,6 +42,8 @@
     </div>
     <input hidden value={user.id} name="id" />
   </Form>
+
+  <ChangePassword userId={user.id} />
 
   <DeleteThing
     thingName="User {user.username}"

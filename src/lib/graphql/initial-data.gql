@@ -1,3 +1,21 @@
 query InitialData {
   userCount
+  babies {
+    id
+    name
+    alternativeName
+    birthdate
+    dueDate
+    gender
+    father {
+      id
+      name
+    }
+    mother {
+      id
+      name
+    }
+    createdAt
+    updatedAt
+  }
 }

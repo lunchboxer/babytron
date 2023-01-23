@@ -1,0 +1,48 @@
+query Babies {
+  babies {
+    ...AllBabyFields
+  }
+}
+
+query Baby($id: ID!) {
+  baby(id: $id) {
+    ...AllBabyFields
+  }
+}
+
+mutation CreateBaby($input: CreateBabyInput!) {
+  createBaby(input: $input) {
+    ...AllBabyFields
+  }
+}
+
+mutation UpdateBaby($input: UpdateBabyInput!) {
+  updateBaby(input: $input) {
+    ...AllBabyFields
+  }
+}
+
+mutation DeleteBaby($id: ID!) {
+  deleteBaby(id: $id) {
+    id
+  }
+}
+
+fragment AllBabyFields on Baby {
+  id
+  name
+  alternativeName
+  birthdate
+  dueDate
+  gender
+  father {
+    id
+    name
+  }
+  mother {
+    id
+    name
+  }
+  createdAt
+  updatedAt
+}

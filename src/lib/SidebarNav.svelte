@@ -1,15 +1,18 @@
 <script>
   import { me } from '$lib/data/me.js'
+  import { babies } from '$lib/data/babies.js'
   import { userCount } from '$lib/data/users.js'
   import { notifications } from '$lib/notifications'
   import { goto } from '$app/navigation'
   import Logo from '$lib/Logo.svelte'
   import NavItem from '$lib/NavItem.svelte'
   import {
+    faPoo,
     faUsers,
     faAddressCard,
     faPersonThroughWindow,
     faSliders,
+    faBaby,
   } from '@fortawesome/free-solid-svg-icons'
 
   export let checked = ''
@@ -47,6 +50,15 @@
     <div class="divider" />
     <!-- Sidebar content here -->
     {#if $me?.id}
+      <NavItem
+        count={$babies?.length}
+        icon={faBaby}
+        label="Babies"
+        url="/babies"
+      />
+      {#if $babies?.length}
+        <NavItem icon={faPoo} label="Diapers" url="/diapers" />
+      {/if}
       {#if $me?.isAdmin}
         <NavItem count={$userCount} icon={faUsers} label="Users" url="/users" />
       {/if}

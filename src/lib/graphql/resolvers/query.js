@@ -25,4 +25,16 @@ export const Query = {
     const count = await prisma.user.aggregate({ _count: { id: true } })
     return count._count.id
   },
+
+  baby: async (_, { id }, context) => {
+    const foundBaby = await context.prisma.baby.findUnique({
+      where: { id },
+    })
+    if (!foundBaby) throw new GraphQLError('Baby not found.')
+    return foundBaby
+  },
+
+  babies: (_, parameters, context) => {
+    return context.prisma.baby.findMany()
+  },
 }

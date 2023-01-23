@@ -6,6 +6,9 @@ type Mutation {
   deleteUser(id: ID!): User
   updateUser(input: UpdateUserInput!): User
   changePassword(id: ID!, oldPassword: String, newPassword: String!): User
+  createBaby(input: CreateBabyInput!): Baby
+  updateBaby(input: UpdateBabyInput!): Baby
+  deleteBaby(id: ID!): Baby
 }
 
 type Query {
@@ -13,6 +16,8 @@ type Query {
   user(id: ID!): User
   userCount: Int
   users: [User]
+  babies: [Baby]
+  baby(id: ID!): Baby
 }
 
 type User {
@@ -22,6 +27,21 @@ type User {
   isVerified: Boolean
   name: String
   isAdmin: Boolean!
+  fatherTo: [Baby!]!
+  motherTo: [Baby!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Baby {
+  id: ID!
+  name: String
+  alternativeName: String
+  birthdate: String
+  dueDate: String
+  gender: String
+  father: User
+  mother: User
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -40,4 +60,21 @@ input UpdateUserInput {
   email: EmailAddress
   name: String
   isAdmin: Boolean
+}
+
+input CreateBabyInput {
+  name: String
+  alternativeName: String
+  birthdate: String
+  dueDate: String
+  gender: String
+}
+
+input UpdateBabyInput {
+  id: ID!
+  name: String
+  alternativeName: String
+  birthdate: String
+  dueDate: String
+  gender: String
 }

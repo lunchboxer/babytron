@@ -25,6 +25,9 @@ export const permissions = shield(
       deleteUser: isAdmin,
       updateUser: or(isThisUser, isAdmin),
       changePassword: or(isThisUser, isAdmin),
+      createBaby: isAuthenticated,
+      updateBaby: isAuthenticated,
+      deleteBaby: isAuthenticated,
     },
   },
   {

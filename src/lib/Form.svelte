@@ -67,10 +67,10 @@
       <slot />
     {/key}
     <p>
-      <button type="reset" class="btn btn-outline btn-error"
+      <button type="reset" class="btn btn-outline btn-error" {disabled}
         >&#10005; &nbsp;reset</button
       >
-      <button type="submit" class="btn btn-outline btn-success">
+      <button type="submit" class="btn btn-outline btn-success" {disabled}>
         ✓ &nbsp;{submitLabel}
       </button>
     </p>
