@@ -31,9 +31,6 @@
     <div class="flex flex-wrap">
       {#each $babies as baby}
         <div class="card w-96 lg:card-side bg-base-200 shadow m-2">
-          <figure class="bg-neutral p-4 my-0">
-            <Fa icon={faBaby} size="8x" color="hsl(var(--nc))" />
-          </figure>
           <div class="card-body pt-0">
             <h2 class="card-title">
               <BabyName {baby} />

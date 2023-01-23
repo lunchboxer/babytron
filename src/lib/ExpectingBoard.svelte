@@ -43,16 +43,16 @@
         <h1 class="mb-5 text-6xl font-bold">
           <BabyName baby={$selectedBaby} /> is coming!
         </h1>
-
-        <div class="alert alert-info text-2xl shadow-lg">
-          <div>
-            <span>
-              {Math.abs(daysToEDD($selectedBaby.dueDate))} days left
-            </span>
-          </div>
-        </div>
       {/if}
       <div class="text-base-content">
+        {#if isFuture($selectedBaby.dueDate)}
+          <div class="stat">
+            <div class="stat-title">Time remaining</div>
+            <div class="stat-value text-4xl">
+              {Math.abs(daysToEDD($selectedBaby.dueDate))} days
+            </div>
+          </div>
+        {/if}
         <div class="stat">
           <div class="stat-title">Gestational Age</div>
           <div class="stat-value text-2xl">
