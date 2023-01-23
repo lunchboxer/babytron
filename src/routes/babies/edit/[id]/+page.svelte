@@ -7,6 +7,7 @@
   import Input from '$lib/Input.svelte'
   import GenderSelect from '$lib/GenderSelect.svelte'
   import DeleteThing from '$lib/DeleteThing.svelte'
+  import Unbirth from './Unbirth.svelte'
 
   export let data = {}
   const { errors, loadBaby } = data
@@ -47,6 +48,9 @@
     />
     <GenderSelect bind:gender={baby.gender} />
   </Form>
+  {#if baby.birthdate}
+    <Unbirth {baby} />
+  {/if}
   <DeleteThing
     thingName="this baby record"
     deleteFunction={() => {

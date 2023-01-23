@@ -28,6 +28,18 @@ mutation DeleteBaby($id: ID!) {
   }
 }
 
+mutation Unbirth($id: ID!) {
+  unbirth(id: $id) {
+    ...AllBabyFields
+  }
+}
+
+mutation Birth($id: ID!, $birthdate: String) {
+  birth(id: $id, birthdate: $birthdate) {
+    ...AllBabyFields
+  }
+}
+
 fragment AllBabyFields on Baby {
   id
   name

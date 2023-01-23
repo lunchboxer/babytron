@@ -8,6 +8,7 @@ import {
   CREATE_BABY,
   UPDATE_BABY,
   DELETE_BABY,
+  UNBIRTH,
 } from '$graphql/babies.gql'
 
 function createBabiesStore() {
@@ -62,6 +63,11 @@ function createBabiesStore() {
     remove: async (id) => {
       await request(DELETE_BABY, { id })
       update((existing) => existing.filter((b) => b.id !== id))
+    },
+    // Unbirth - change birthdate to null //
+    unbirth: async function (id) {
+      const newBaby = await request(UNBIRTH, { id })
+      this.updateOne(newBaby)
     },
   }
 }

@@ -3,8 +3,8 @@
   import BabyName from '$lib/BabyName.svelte'
   import Fa from 'svelte-fa'
   import {
-    faClipboard,
     faPersonPregnant,
+    faClipboard,
   } from '@fortawesome/free-solid-svg-icons'
   import {
     gestationalAgeInDays,
@@ -68,23 +68,25 @@
           <div class="stat-desc">estimated</div>
         </div>
 
-        <div class="stat">
-          <div class="stat-title">Progress</div>
-          <div class="stat-value text-2xl">
-            {percentDone($selectedBaby.dueDate)}%
+        {#if isFuture($selectedBaby.dueDate)}
+          <div class="stat">
+            <div class="stat-title">Progress</div>
+            <div class="stat-value text-2xl">
+              {percentDone($selectedBaby.dueDate)}%
+            </div>
+            <div class="stat-desc">
+              <progress
+                class="progress progress-secondary"
+                value={gestationalAgeInDays($selectedBaby.dueDate)}
+                max="280"
+              />
+            </div>
           </div>
-          <div class="stat-desc">
-            <progress
-              class="progress progress-secondary border"
-              value={gestationalAgeInDays($selectedBaby.dueDate)}
-              max="280"
-            />
-          </div>
-        </div>
+        {/if}
       </div>
-      <button class="btn gap-2 mt-8">
+      <a href="/babies/edit/{$selectedBaby.id}" class="btn gap-2 my-2 lg:my-8">
         <Fa icon={faClipboard} />Record birth
-      </button>
+      </a>
     </div>
   </div>
 </div>
