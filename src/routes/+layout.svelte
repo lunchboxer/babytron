@@ -23,7 +23,7 @@
   <div class="drawer-content flex flex-col">
     <Header />
 
-    <div class="container prose mx-auto px-4 py-4 mt-20">
+    <div class="container prose mx-auto px-4 py-4 mt-16">
       {#if !$me?.id && $page.url.pathname !== '/settings'}
         <Login />
       {:else if $me?.id || $page.url.pathname === '/settings'}

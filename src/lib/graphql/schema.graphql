@@ -9,6 +9,8 @@ type Mutation {
   createBaby(input: CreateBabyInput!): Baby
   updateBaby(input: UpdateBabyInput!): Baby
   deleteBaby(id: ID!): Baby
+  birth(id: ID!, birthdate: String): Baby
+  unbirth(id: ID!): Baby
 }
 
 type Query {

@@ -8,7 +8,6 @@
   let restart = 1
   let errors = ''
   let disabled = false
-  let loading = false
   export let action = ''
   export let method = 'POST'
   export let submitLabel = 'Submit'
@@ -27,7 +26,6 @@
       })
       return
     }
-    loading = true
     disabled = true
     ++restart
     try {
@@ -39,7 +37,6 @@
       errors = error
       onError(error)
     } finally {
-      loading = false
       disabled = false
     }
   }

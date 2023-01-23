@@ -24,4 +24,13 @@ export const baby = {
   },
 
   deleteBaby: (_, { id }, { prisma }) => prisma.baby.delete({ where: { id } }),
+
+  birth: (_, parameters, { prisma }) => {
+    const { id } = parameters
+    const birthdate = new Date(parameters.birthdate).toISOString()
+    return prisma.baby.update({ where: { id }, data: { birthdate } })
+  },
+  unbirth: (_, { id }, { prisma }) => {
+    return prisma.baby.update({ where: { id }, data: { birthdate: null } })
+  },
 }

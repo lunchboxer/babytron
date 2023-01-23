@@ -33,7 +33,6 @@ function createBabiesStore() {
     },
     // Patch //
     patch: async function (baby) {
-      console.log('patch baby', baby)
       const { father, mother, createdAt, updatedAt, ...cleanBaby } = baby
       const response = await request(UPDATE_BABY, {
         input: { ...cleanBaby },

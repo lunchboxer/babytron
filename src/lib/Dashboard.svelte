@@ -5,7 +5,6 @@
   import {
     faClipboard,
     faPersonPregnant,
-    faHourglassHalf,
   } from '@fortawesome/free-solid-svg-icons'
   import { subDays, differenceInCalendarDays } from 'date-fns'
 
@@ -39,45 +38,53 @@
     const portion = gestationalAgeInDays(dueDate) / 280
     return Math.round(portion * 100)
   }
+  const toDateString = (date) => {
+    const dateObject = new Date(date)
+    return dateObject.toDateString()
+  }
 </script>
 
-<svelte:head>
-  <title>Dashboard</title>
-</svelte:head>
-
-<h1>Dashboard</h1>
-<h2><BabyName baby={$selectedBaby} /></h2>
-
-{#if !$selectedBaby.birthdate}
-  {#if !isFuture($selectedBaby.dueDate)}
-    <div class="alert alert-warning shadow-lg">
-      <div>
-        <Fa icon={faPersonPregnant} />
-        <span>{Math.abs(daysToEDD($selectedBaby.dueDate))} days overdue</span>
+{#if $selectedBaby?.birthdate}
+  <h1>Dashboard</h1>
+  <h2><BabyName baby={$selectedBaby} /></h2>
+{:else}
+  <div class="hero py-8">
+    <div class="hero-content text-center text-neutral-content">
+      <div class="max-w-md">
+        <h1 class="mb-5 text-5xl font-bold">
+          {#if !isFuture($selectedBaby.dueDate)}
+            <div class="alert alert-warning shadow-lg">
+              <div>
+                <Fa icon={faPersonPregnant} size="2x" />
+                <span>
+                  <BabyName baby={$selectedBaby} />
+                  <br />
+                  {Math.abs(daysToEDD($selectedBaby.dueDate))} days overdue
+                </span>
+              </div>
+            </div>
+          {:else}
+            <BabyName baby={$selectedBaby} /> is coming in {daysToEDD(
+              $selectedBaby.dueDate,
+            )} days
+          {/if}
+        </h1>
+        <h3>
+          Gestational Age: {gestationalAgeInWeeksString($selectedBaby.dueDate)}
+        </h3>
+        <h3>Due: {toDateString($selectedBaby.dueDate)}</h3>
+        {#if isFuture($selectedBaby.dueDate)}
+          <h3>Progress: {percentDone($selectedBaby.dueDate)}%</h3>
+          <progress
+            class="progress progress-secondary border"
+            value={gestationalAgeInDays($selectedBaby.dueDate)}
+            max="280"
+          />
+        {/if}
+        <button class="btn gap-2 mt-10">
+          <Fa icon={faClipboard} />Record birth
+        </button>
       </div>
     </div>
-  {:else}
-    <div class="alert alert-info shadow-lg">
-      <div>
-        <Fa icon={faHourglassHalf} />
-        <span>
-          {Math.abs(daysToEDD($selectedBaby.dueDate))} days to go
-        </span>
-      </div>
-    </div>
-  {/if}
-  <p>Still waiting for this baby to arrive.</p>
-  {#if $selectedBaby.dueDate}
-    <p>Gestational Age: {gestationalAgeInWeeksString($selectedBaby.dueDate)}</p>
-    <p>Due: {$selectedBaby.dueDate}</p>
-    {#if isFuture($selectedBaby.dueDate)}
-      <p>Progress: {percentDone($selectedBaby.dueDate)}%</p>
-      <progress
-        class="progress progress-secondary"
-        value={gestationalAgeInDays($selectedBaby.dueDate)}
-        max="280"
-      />
-    {/if}
-  {/if}
-  <button class="btn gap-2 my-4"><Fa icon={faClipboard} />Record birth</button>
+  </div>
 {/if}

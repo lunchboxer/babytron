@@ -62,6 +62,7 @@ module.exports = {
     'import/first': 0,
     //  'unicorn/no-nested-ternary': 'off',
     'space-before-function-paren': 0,
+    'unicorn/no-null': 0, // graphql uses null
     'comma-dangle': ['error', 'always-multiline'],
     'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 2, maxEOF: 1 }],
   },

@@ -30,7 +30,7 @@ function createUsersStore() {
     create: async function (user) {
       const response = await request(CREATE_USER, { input: { ...user } })
       update((existing) => [...existing, response.createUser])
-      this.getUserCount()
+      this.getCount()
     },
     updateOne: async function (user) {
       const meUser = get(me)
@@ -51,8 +51,9 @@ function createUsersStore() {
     // Patch //
     patch: async function (user) {
       // probably need to clean user object before sending
+      const { fatherTo, motherTo, createdAt, updatedAt, ...cleanUser } = user
       const response = await request(UPDATE_USER, {
-        input: user,
+        input: cleanUser,
       })
       this.updateOne(response.updateUser)
     },

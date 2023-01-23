@@ -25,8 +25,8 @@
 </script>
 
 <script>
-  import SunIcon from '$lib/icons/SunIcon.svelte'
-  import MoonIcon from '$lib/icons/MoonIcon.svelte'
+  import Fa from 'svelte-fa'
+  import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 </script>
 
 <h3>Color theme</h3>
@@ -38,7 +38,7 @@
     }}
     class:btn-active={$theme === 'cupcake'}
   >
-    <SunIcon />light
+    <Fa icon={faSun} />light
   </button>
   <button
     class="btn gap-2"
@@ -47,6 +47,6 @@
     }}
     class:btn-active={$theme === 'dark'}
   >
-    <MoonIcon />dark
+    <Fa icon={faMoon} />dark
   </button>
 </div>

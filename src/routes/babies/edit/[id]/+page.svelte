@@ -1,5 +1,4 @@
 <script>
-  import DeleteThing from '$lib/DeleteThing.svelte'
   import { babies } from '$lib/data/babies.js'
   import { notifications } from '$lib/notifications'
   import { goto } from '$app/navigation'
@@ -7,6 +6,7 @@
   import Form from '$lib/Form.svelte'
   import Input from '$lib/Input.svelte'
   import GenderSelect from '$lib/GenderSelect.svelte'
+  import DeleteThing from '$lib/DeleteThing.svelte'
 
   export let data = {}
   const { errors, loadBaby } = data
