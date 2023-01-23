@@ -3,6 +3,7 @@
   import AddBaby from '$lib/AddBaby.svelte'
   import BabySelect from '$lib/BabySelect.svelte'
   import Dashboard from '$lib/Dashboard.svelte'
+  import ExpectingBoard from '$lib/ExpectingBoard.svelte'
 </script>
 
 <svelte:head>
@@ -18,6 +19,8 @@
 {:else if !$selectedBaby}
   <h1>Oops! no baby chosen yet.</h1>
   <BabySelect />
+{:else if !$selectedBaby?.birthdate}
+  <ExpectingBoard />
 {:else}
   <Dashboard />
 {/if}
