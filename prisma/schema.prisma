@@ -27,6 +27,7 @@ model Baby {
   name            String?
   alternativeName String?
   birthdate       String?
+  nickname        String?
   dueDate         String?
   gender          String?
   mother          User?    @relation("mother", fields: [motherId], references: [id])

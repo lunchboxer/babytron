@@ -34,6 +34,11 @@
   <Form {onSubmit} {onReset} submitLabel="Save changes">
     <Input bind:value={baby.name} label="Name" />
     <Input bind:value={baby.alternativeName} label="Alternative name" />
+    <Input
+      bind:value={baby.nickname}
+      label="Nickname"
+      description="What to call the baby while it is unnamed"
+    />
     <Input bind:value={baby.birthdate} type="date" label="Birthdate" />
     <Input
       bind:value={baby.dueDate}

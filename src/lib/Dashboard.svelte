@@ -5,6 +5,7 @@
   import {
     faClipboard,
     faPersonPregnant,
+    faHourglassHalf,
   } from '@fortawesome/free-solid-svg-icons'
   import { subDays, differenceInCalendarDays } from 'date-fns'
 
@@ -58,7 +59,7 @@
   {:else}
     <div class="alert alert-info shadow-lg">
       <div>
-        <Fa icon={faPersonPregnant} />
+        <Fa icon={faHourglassHalf} />
         <span>
           {Math.abs(daysToEDD($selectedBaby.dueDate))} days to go
         </span>

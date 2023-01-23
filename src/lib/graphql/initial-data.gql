@@ -4,6 +4,7 @@ query InitialData {
     id
     name
     alternativeName
+    nickname
     birthdate
     dueDate
     gender

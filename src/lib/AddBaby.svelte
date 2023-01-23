@@ -7,12 +7,20 @@
 
   let name = ''
   let alternativeName = ''
+  let nickname = ''
   let gender = ''
   let birthdate = ''
   let dueDate = ''
 
   const onSubmit = async () => {
-    await babies.create({ name, alternativeName, gender, birthdate, dueDate })
+    await babies.create({
+      name,
+      alternativeName,
+      nickname,
+      gender,
+      birthdate,
+      dueDate,
+    })
     notifications.add({
       type: 'success',
       text: 'Added baby successfully.',
@@ -21,6 +29,7 @@
   const onReset = () => {
     name = ''
     alternativeName = ''
+    nickname = ''
     birthdate = ''
     dueDate = ''
     gender = ''
@@ -32,6 +41,11 @@
 <Form {onSubmit} {onReset} submitLabel="Add this baby">
   <Input bind:value={name} label="Name" />
   <Input bind:value={alternativeName} label="Alternative name" />
+  <Input
+    bind:value={nickname}
+    label="Nickname"
+    description="What to call the baby while it is unnamed"
+  />
   <Input bind:value={birthdate} type="date" label="Birthdate" />
   <Input
     bind:value={dueDate}

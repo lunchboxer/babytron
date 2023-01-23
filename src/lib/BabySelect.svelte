@@ -1,7 +1,8 @@
 <script>
   import { babies, selectedBabyId } from '$lib/data/babies.js'
+  import BabyName from '$lib/BabyName.svelte'
 
-  let selected = $selectedBabyId
+  let selected = $selectedBabyId || ''
 
   const selectActive = () => selected && selectedBabyId.set(selected)
 </script>
@@ -19,22 +20,14 @@
     >
       <option disabled value=""> Select a baby </option>
       {#each $babies as baby}
-        {#if baby.name}
-          <option value={baby.id}>
-            {baby.name}
-            {baby.alternativeName ? `(${baby.alternativeName})` : ''}
-          </option>
-        {:else}
-          <option value={baby.id}>
-            Unnamed baby
-            {#if baby.birthdate}
-              born {baby.birthdate}
-            {/if}
-            {#if baby.dueDate}
-              due {baby.dueDate}
-            {/if}
-          </option>
-        {/if}
+        <option value={baby.id}>
+          <BabyName {baby} />
+          {#if baby.birthdate}
+            - born {baby.birthdate}
+          {:else if baby.dueDate}
+            - due {baby.dueDate}
+          {/if}
+        </option>
       {/each}
     </select>
   </div>
