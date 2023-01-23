@@ -3,6 +3,8 @@
   import AddBaby from '$lib/AddBaby.svelte'
   import Error from '$lib/Error.svelte'
   import Fa from 'svelte-fa'
+  import BabyName from '$lib/BabyName.svelte'
+  import BabySelect from '$lib/BabySelect.svelte'
   import {
     faBaby,
     faPencil,
@@ -20,29 +22,27 @@
 <Error {errors} />
 
 {#if $babies}
+  <BabySelect />
   {#if $babies.length > 0}
-    <p>{$babies?.length} {$babies?.length === 1 ? 'baby' : 'babies'}</p>
+    <p>
+      {$babies?.length}
+      {$babies?.length === 1 ? 'baby' : 'babies'} in records
+    </p>
     {#each $babies as baby}
-      <div class="card w-96 bg-base-100 shadow-xl border m-2">
+      <div class="card w-96 bg-base-100 shadow border m-2">
         <figure class="bg-neutral p-4 my-0">
           <Fa icon={faBaby} size="8x" color="hsl(var(--nc))" />
         </figure>
         <div class="card-body pt-0">
-          {#if baby.name}
-            <h2 class="card-title">
-              {baby.name}{baby.alternativeName
-                ? ` (${baby.alternativeName})`
-                : ''}
-              {#if baby.gender === 'F'}
-                <Fa icon={faVenus} />
-              {/if}
-              {#if baby.gender === 'M'}
-                <Fa icon={faMars} />
-              {/if}
-            </h2>
-          {:else}
-            <h2 class="card-title">Unnamed Baby</h2>
-          {/if}
+          <h2 class="card-title">
+            <BabyName {baby} />
+            {#if baby.gender === 'F'}
+              <Fa icon={faVenus} />
+            {/if}
+            {#if baby.gender === 'M'}
+              <Fa icon={faMars} />
+            {/if}
+          </h2>
           {#if baby.birthdate}
             <p>Birthdate: {baby.birthdate}</p>
           {:else if baby.dueDate}

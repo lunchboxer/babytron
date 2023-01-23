@@ -1,13 +1,15 @@
 <script>
   import { me } from '$lib/data/me.js'
-  import { babies } from '$lib/data/babies.js'
+  import { babies, selectedBaby } from '$lib/data/babies.js'
   import { userCount } from '$lib/data/users.js'
   import { notifications } from '$lib/notifications'
   import { goto } from '$app/navigation'
   import Logo from '$lib/Logo.svelte'
   import NavItem from '$lib/NavItem.svelte'
+  import BabyName from '$lib/BabyName.svelte'
   import {
     faPoo,
+    faGauge,
     faUsers,
     faAddressCard,
     faPersonThroughWindow,
@@ -38,7 +40,7 @@
 <div class="drawer-side">
   <label for="my-drawer" class="drawer-overlay" />
   <ul
-    class="menu p-4 overflow-y-auto w-64 bg-base-300 text-base-content"
+    class="menu p-4 w-64 bg-base-300 text-base-content"
     on:keypress={() => {
       checked = ''
     }}
@@ -47,9 +49,19 @@
     }}
   >
     <Logo />
+    {#if $selectedBaby?.id}
+      <p class="text-center">
+        <span class="badge badge-primary"
+          ><BabyName baby={$selectedBaby} /></span
+        >
+      </p>
+    {/if}
     <div class="divider" />
     <!-- Sidebar content here -->
     {#if $me?.id}
+      {#if $selectedBaby}
+        <NavItem icon={faGauge} label="Dashboard" url="/" />
+      {/if}
       <NavItem
         count={$babies?.length}
         icon={faBaby}

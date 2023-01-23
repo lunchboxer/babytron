@@ -2,6 +2,7 @@
   import { babies, selectedBaby } from '$lib/data/babies.js'
   import AddBaby from '$lib/AddBaby.svelte'
   import BabySelect from '$lib/BabySelect.svelte'
+  import Dashboard from '$lib/Dashboard.svelte'
 </script>
 
 <svelte:head>
@@ -18,8 +19,5 @@
   <h1>Oops! no baby chosen yet.</h1>
   <BabySelect />
 {:else}
-  <h1>
-    {$selectedBaby.name || 'Unnamed baby'}
-    {$selectedBaby.alternativeName ? `(${selectedBaby.alternativeName})` : ''}
-  </h1>
+  <Dashboard />
 {/if}

@@ -1,7 +1,7 @@
 <script>
   import { babies, selectedBabyId } from '$lib/data/babies.js'
 
-  let selected = ''
+  let selected = $selectedBabyId
 
   const selectActive = () => selected && selectedBabyId.set(selected)
 </script>
