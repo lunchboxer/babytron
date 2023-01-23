@@ -76,7 +76,7 @@
             </div>
             <div class="stat-desc">
               <progress
-                class="progress progress-secondary"
+                class="progress"
                 value={gestationalAgeInDays($selectedBaby.dueDate)}
                 max="280"
               />
