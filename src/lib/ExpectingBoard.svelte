@@ -23,29 +23,35 @@
   }
 </script>
 
-<div class="hero py-8">
+<div class="hero">
   <div class="hero-content text-center text-neutral-content">
     <div class="max-w-md">
-      <h1 class="mb-5 text-5xl font-bold">
-        {#if !isFuture($selectedBaby.dueDate)}
-          <p>
-            <BabyName baby={$selectedBaby} />
-          </p>
+      {#if !isFuture($selectedBaby.dueDate)}
+        <h1 class="text-5xl font-bold my-8">
+          <BabyName baby={$selectedBaby} />
+        </h1>
 
-          <div class="alert alert-warning shadow-lg">
-            <div>
-              <Fa icon={faPersonPregnant} />
-              <span>
-                {Math.abs(daysToEDD($selectedBaby.dueDate))} days overdue
-              </span>
-            </div>
+        <div class="alert alert-warning text-3xl shadow-lg">
+          <div>
+            <Fa icon={faPersonPregnant} />
+            <span>
+              {Math.abs(daysToEDD($selectedBaby.dueDate))} days overdue
+            </span>
           </div>
-        {:else}
-          <BabyName baby={$selectedBaby} /> is coming in {daysToEDD(
-            $selectedBaby.dueDate,
-          )} days
-        {/if}
-      </h1>
+        </div>
+      {:else}
+        <h1 class="mb-5 text-6xl font-bold">
+          <BabyName baby={$selectedBaby} /> is coming!
+        </h1>
+
+        <div class="alert alert-info text-4xl shadow-lg">
+          <div>
+            <span>
+              {Math.abs(daysToEDD($selectedBaby.dueDate))} days left
+            </span>
+          </div>
+        </div>
+      {/if}
       <h3>
         Gestational Age: {gestationalAgeInWeeksString($selectedBaby.dueDate)}
       </h3>
