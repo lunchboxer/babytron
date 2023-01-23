@@ -44,7 +44,7 @@
           <BabyName baby={$selectedBaby} /> is coming!
         </h1>
 
-        <div class="alert alert-info text-4xl shadow-lg">
+        <div class="alert alert-info text-2xl shadow-lg">
           <div>
             <span>
               {Math.abs(daysToEDD($selectedBaby.dueDate))} days left
@@ -52,19 +52,37 @@
           </div>
         </div>
       {/if}
-      <h3>
-        Gestational Age: {gestationalAgeInWeeksString($selectedBaby.dueDate)}
-      </h3>
-      <h3>Due: {toDateString($selectedBaby.dueDate)}</h3>
-      {#if isFuture($selectedBaby.dueDate)}
-        <h3>Progress: {percentDone($selectedBaby.dueDate)}%</h3>
-        <progress
-          class="progress progress-secondary border"
-          value={gestationalAgeInDays($selectedBaby.dueDate)}
-          max="280"
-        />
-      {/if}
-      <button class="btn gap-2 mt-10">
+      <div class="text-base-content">
+        <div class="stat">
+          <div class="stat-title">Gestational Age</div>
+          <div class="stat-value text-2xl">
+            {gestationalAgeInWeeksString($selectedBaby.dueDate)}
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-title">Due Date</div>
+          <div class="stat-value text-2xl">
+            {toDateString($selectedBaby.dueDate)}
+          </div>
+          <div class="stat-desc">estimated</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-title">Progress</div>
+          <div class="stat-value text-2xl">
+            {percentDone($selectedBaby.dueDate)}%
+          </div>
+          <div class="stat-desc">
+            <progress
+              class="progress progress-secondary border"
+              value={gestationalAgeInDays($selectedBaby.dueDate)}
+              max="280"
+            />
+          </div>
+        </div>
+      </div>
+      <button class="btn gap-2 mt-8">
         <Fa icon={faClipboard} />Record birth
       </button>
     </div>
