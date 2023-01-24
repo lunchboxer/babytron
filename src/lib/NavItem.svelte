@@ -14,7 +14,7 @@
       <Fa {icon} />
       {label}
       {#if count !== undefined}
-        <div class="badge">{count}</div>
+        <div class="badge badge-outline">{count}</div>
       {/if}
     </button>
   {:else}
@@ -22,7 +22,7 @@
       <Fa {icon} />
       {label}
       {#if count !== undefined}
-        <div class="badge">{count}</div>
+        <div class="badge badge-outline">{count}</div>
       {/if}
     </a>
   {/if}

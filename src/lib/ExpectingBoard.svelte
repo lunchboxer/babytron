@@ -84,7 +84,10 @@
           </div>
         {/if}
       </div>
-      <a href="/babies/edit/{$selectedBaby.id}" class="btn gap-2 my-2 lg:my-8">
+      <a
+        href="/babies/edit/{$selectedBaby.id}"
+        class="btn btn-outline gap-2 my-2 lg:my-8"
+      >
         <Fa icon={faClipboard} />Record birth
       </a>
     </div>

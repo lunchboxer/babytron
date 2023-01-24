@@ -8,7 +8,6 @@
   import NavItem from '$lib/NavItem.svelte'
   import BabyName from '$lib/BabyName.svelte'
   import {
-    faPoo,
     faGauge,
     faUsers,
     faAddressCard,
@@ -68,9 +67,6 @@
         label="Babies"
         url="/babies"
       />
-      {#if $babies?.length}
-        <NavItem icon={faPoo} label="Diapers" url="/diapers" />
-      {/if}
       {#if $me?.isAdmin}
         <NavItem count={$userCount} icon={faUsers} label="Users" url="/users" />
       {/if}
