@@ -1,0 +1,15 @@
+mutation CreateMeasurement($input: CreateMeasurementInput!) {
+  createMeasurement(input: $input) {
+    ...AllMeasurementFields
+  }
+}
+
+fragment AllMeasurementFields on Measurement {
+  id
+  type
+  value
+  timestamp
+  baby {
+    id
+  }
+}

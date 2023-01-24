@@ -11,6 +11,8 @@ type Mutation {
   deleteBaby(id: ID!): Baby
   birth(id: ID!, birthdate: String): Baby
   unbirth(id: ID!): Baby
+  createMeasurement(input: CreateMeasurementInput!): Measurement
+  deleteMeasurement(id: ID!): Measurement
 }
 
 type Query {
@@ -40,13 +42,34 @@ type Baby {
   name: String
   alternativeName: String
   nickname: String
+  """
+  Birthdates are in YY-MM-DD format without times
+  """
   birthdate: String
+  """
+  Times should be in 00:00:00 24-hr format
+  """
+  birthTime: String
   dueDate: String
   gender: String
   father: User
   mother: User
+  measurements: [Measurement!]!
   createdAt: DateTime
   updatedAt: DateTime
+}
+
+type Measurement {
+  id: ID!
+  baby: Baby!
+  """
+  Measurement types are many, but the three most useful will be
+  weightInGrams, lengthInMillimeters, and headCircumferenceInMillimeters
+  Use camelCase and include the smallest integer unit
+  """
+  type: String!
+  value: Int!
+  timestamp: DateTime
 }
 
 input CreateUserInput {
@@ -70,6 +93,7 @@ input CreateBabyInput {
   alternativeName: String
   nickname: String
   birthdate: String
+  birthTime: String
   dueDate: String
   gender: String
 }
@@ -80,6 +104,14 @@ input UpdateBabyInput {
   alternativeName: String
   nickname: String
   birthdate: String
+  birthTime: String
   dueDate: String
   gender: String
+}
+
+input CreateMeasurementInput {
+  babyId: ID!
+  type: String!
+  value: Int!
+  timestamp: DateTime
 }

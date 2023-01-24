@@ -23,17 +23,28 @@ model User {
 }
 
 model Baby {
-  id              String   @id @default(cuid())
+  id              String        @id @default(cuid())
   name            String?
   alternativeName String?
   birthdate       String?
+  birthTime       String?
   nickname        String?
   dueDate         String?
   gender          String?
-  mother          User?    @relation("mother", fields: [motherId], references: [id])
+  mother          User?         @relation("mother", fields: [motherId], references: [id])
   motherId        String?
-  father          User?    @relation("father", fields: [fatherId], references: [id])
+  father          User?         @relation("father", fields: [fatherId], references: [id])
   fatherId        String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  measurements    Measurement[]
+}
+
+model Measurement {
+  id        String   @id @default(cuid())
+  baby      Baby     @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId    String
+  type      String
+  value     Int
+  timestamp DateTime @default(now())
 }

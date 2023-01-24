@@ -12,6 +12,7 @@
   export let description = ''
   export let min = undefined
   export let max = undefined
+  export let step = 1
   export let onChange = () => {}
   let show = false
 
@@ -58,6 +59,41 @@
       {name}
       {min}
       {max}
+      aria-describedby={descriptionId}
+      on:input={checkValidity}
+      on:invalid|preventDefault={checkValidity}
+    />
+  {/if}
+
+  {#if type === 'time'}
+    <input
+      bind:this={input}
+      bind:value
+      class="input input-bordered"
+      class:input-error={error}
+      type="time"
+      {required}
+      {name}
+      {min}
+      {max}
+      aria-describedby={descriptionId}
+      on:input={checkValidity}
+      on:invalid|preventDefault={checkValidity}
+    />
+  {/if}
+
+  {#if type === 'number'}
+    <input
+      bind:this={input}
+      bind:value
+      class="input input-bordered"
+      class:input-error={error}
+      type="number"
+      {required}
+      {name}
+      {min}
+      {max}
+      {step}
       aria-describedby={descriptionId}
       on:input={checkValidity}
       on:invalid|preventDefault={checkValidity}

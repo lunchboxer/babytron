@@ -46,6 +46,7 @@ fragment AllBabyFields on Baby {
   alternativeName
   nickname
   birthdate
+  birthTime
   dueDate
   gender
   father {

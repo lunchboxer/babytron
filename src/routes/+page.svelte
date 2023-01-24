@@ -1,9 +1,10 @@
 <script>
   import { babies, selectedBaby } from '$lib/data/babies.js'
-  import AddBaby from '$lib/AddBaby.svelte'
   import BabySelect from '$lib/BabySelect.svelte'
   import Dashboard from '$lib/Dashboard.svelte'
   import ExpectingBoard from '$lib/ExpectingBoard.svelte'
+  import Fa from 'svelte-fa'
+  import { faPlus } from '@fortawesome/free-solid-svg-icons'
 </script>
 
 <svelte:head>
@@ -15,7 +16,9 @@
   <p>
     Babytron requires babies, but there are no babies currently in the database.
   </p>
-  <AddBaby />
+  <a href="/babies/add-baby" class="btn gap-2 mt-2">
+    <Fa icon={faPlus} />Add a baby
+  </a>
 {:else if !$selectedBaby}
   <h1>Oops! no baby chosen yet.</h1>
   <BabySelect />

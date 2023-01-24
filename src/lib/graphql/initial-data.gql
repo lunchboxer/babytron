@@ -6,6 +6,7 @@ query InitialData {
     alternativeName
     nickname
     birthdate
+    birthTime
     dueDate
     gender
     father {

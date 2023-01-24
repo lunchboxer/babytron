@@ -1,12 +1,11 @@
 <script>
   import { babies } from '$lib/data/babies.js'
-  import AddBaby from '$lib/AddBaby.svelte'
   import Error from '$lib/Error.svelte'
   import Fa from 'svelte-fa'
   import BabyName from '$lib/BabyName.svelte'
   import BabySelect from '$lib/BabySelect.svelte'
   import {
-    faBaby,
+    faPlus,
     faPencil,
     faVenus,
     faMars,
@@ -60,4 +59,6 @@
     <p>There are no babies in the system.</p>
   {/if}
 {/if}
-<AddBaby />
+<a href="/babies/add-baby" class="btn gap-2 mt-2">
+  <Fa icon={faPlus} />Add a baby
+</a>

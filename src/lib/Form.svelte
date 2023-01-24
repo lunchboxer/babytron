@@ -2,12 +2,15 @@
   import { notifications } from '$lib/notifications'
   import Error from '$lib/Error.svelte'
   import { dev } from '$app/environment'
+  import Fa from 'svelte-fa'
+  import { faXmark, faCheck } from '@fortawesome/free-solid-svg-icons'
 
   let form
 
   let restart = 1
   let errors = ''
   let disabled = false
+  let loading = false
   export let action = ''
   export let method = 'POST'
   export let submitLabel = 'Submit'
@@ -26,6 +29,7 @@
       })
       return
     }
+    loading = true
     disabled = true
     ++restart
     try {
@@ -38,6 +42,7 @@
       onError(error)
     } finally {
       disabled = false
+      loading = false
     }
   }
 
@@ -64,11 +69,16 @@
       <slot />
     {/key}
     <p>
-      <button type="reset" class="btn btn-outline btn-error" {disabled}
-        >&#10005; &nbsp;reset</button
+      <button type="reset" class="btn btn-outline gap-2" {disabled}>
+        <Fa icon={faXmark} />reset
+      </button>
+      <button
+        type="submit"
+        class:loading
+        class="btn btn-success gap-2"
+        {disabled}
       >
-      <button type="submit" class="btn btn-outline btn-success" {disabled}>
-        ✓ &nbsp;{submitLabel}
+        <Fa icon={faCheck} />{submitLabel}
       </button>
     </p>
   </fieldset>

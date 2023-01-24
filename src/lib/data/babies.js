@@ -28,13 +28,21 @@ function createBabiesStore() {
     },
     // Create //
     create: async (baby) => {
-      console.log(baby)
+      console.log('babies.create was sent:', baby)
       const response = await request(CREATE_BABY, { input: { ...baby } })
       update((existing) => [...existing, response.createBaby])
+      return response.createBaby
     },
     // Patch //
     patch: async function (baby) {
-      const { father, mother, createdAt, updatedAt, ...cleanBaby } = baby
+      const {
+        father,
+        mother,
+        measurements,
+        createdAt,
+        updatedAt,
+        ...cleanBaby
+      } = baby
       const response = await request(UPDATE_BABY, {
         input: { ...cleanBaby },
       })
