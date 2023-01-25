@@ -9,17 +9,24 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(cuid())
-  email      String?  @unique
-  username   String   @unique
-  name       String?
-  password   String
-  fatherTo   Baby[]   @relation("father")
-  motherTo   Baby[]   @relation("mother")
-  isAdmin    Boolean  @default(false)
-  isVerified Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id                   String        @id @default(cuid())
+  email                String?       @unique
+  username             String        @unique
+  name                 String?
+  password             String
+  fatherTo             Baby[]        @relation("father")
+  motherTo             Baby[]        @relation("mother")
+  isAdmin              Boolean       @default(false)
+  isVerified           Boolean       @default(false)
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+  diapersRecorded      Diaper[]
+  sleepsRecorded       Sleep[]
+  feedingsRecorded     Feeding[]
+  activitiesRecorded   Activity[]
+  medicationsRecorded  Medication[]
+  notesRecorded        Note[]
+  measurementsRecorded Measurement[]
 }
 
 model Baby {
@@ -38,13 +45,112 @@ model Baby {
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
   measurements    Measurement[]
+  diapers         Diaper[]
+  sleeps          Sleep[]
+  feedings        Feeding[]
+  activities      Activity[]
+  medications     Medication[]
+  notes           Note[]
 }
 
 model Measurement {
-  id        String   @id @default(cuid())
-  baby      Baby     @relation(fields: [babyId], references: [id], onDelete: Cascade)
-  babyId    String
-  type      String
-  value     Int
-  timestamp DateTime @default(now())
+  id         String   @id @default(cuid())
+  baby       Baby     @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId     String
+  type       String
+  value      Int
+  timestamp  DateTime @default(now())
+  recordedBy User?    @relation(fields: [userId], references: [id])
+  userId     String?
+}
+
+model Diaper {
+  id         String   @id @default(cuid())
+  baby       Baby     @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId     String
+  timestamp  DateTime @default(now())
+  isWet      Boolean  @default(false)
+  isDirty    Boolean  @default(false)
+  // Note the color and consitency of BMs and anything out of the ordinary.
+  notes      String?
+  recordedBy User     @relation(fields: [userId], references: [id])
+  userId     String
+}
+
+model Sleep {
+  id         String    @id @default(cuid())
+  baby       Baby      @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId     String
+  startTime  DateTime?
+  endTime    DateTime?
+  wakeReason String?
+  notes      String?
+  recordedBy User      @relation(fields: [userId], references: [id])
+  userId     String
+}
+
+model Feeding {
+  id            String      @id @default(cuid())
+  baby          Baby        @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId        String
+  startTime     DateTime?
+  endTime       DateTime?
+  type          FeedingType
+  byBottle      Boolean
+  // If the baby fed from the bottle, how much was consumed?
+  volumeInMl    Int?
+  byBreast      Boolean
+  // Which breast did feeding start on?
+  startedBreast Breast?
+  // Did to baby switch to the other breast?
+  switched      Boolean?
+  notes         String?
+  recordedBy    User        @relation(fields: [userId], references: [id])
+  userId        String
+}
+
+enum Breast {
+  LEFT
+  RIGHT
+}
+
+enum FeedingType {
+  BREASTMILK
+  FORMULA
+  SOLIDFOOD
+}
+
+model Activity {
+  id          String    @id @default(cuid())
+  baby        Baby      @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId      String
+  startTime   DateTime?
+  endTime     DateTime?
+  description String
+  people      String[]
+  notes       String?
+  recordedBy  User      @relation(fields: [userId], references: [id])
+  userId      String
+}
+
+model Medication {
+  id         String   @id @default(cuid())
+  baby       Baby     @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId     String
+  time       DateTime
+  dosage     String
+  type       String
+  notes      String
+  recordedBy User     @relation(fields: [userId], references: [id])
+  userId     String
+}
+
+model Note {
+  id         String   @id @default(cuid())
+  baby       Baby     @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId     String
+  timestamp  DateTime @default(now())
+  text       String
+  recordedBy User     @relation(fields: [userId], references: [id])
+  userId     String
 }
