@@ -41,6 +41,7 @@
       description="What to call the baby while it is unnamed"
     />
     <Input bind:value={baby.birthdate} type="date" label="Birthdate" />
+    <Input bind:value={baby.birthTime} type="time" label="Birth time" />
     <Input
       bind:value={baby.dueDate}
       type="date"

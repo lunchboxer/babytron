@@ -16,7 +16,7 @@
   let length = ''
   let headCircumference = ''
   let dueDate = ''
-  let born = 'false'
+  let born = false
   let step = 1
 
   const onSubmit = async () => {
@@ -69,7 +69,7 @@
       })
       notifications.add({
         type: 'success',
-        text: 'Recorded birth length successfully.',
+        text: 'Recorded birth head circumference successfully.',
       })
     }
   }
@@ -107,7 +107,7 @@
       <input
         type="radio"
         name="radio-10"
-        value="true"
+        value={true}
         class="radio"
         bind:group={born}
       />
@@ -117,14 +117,14 @@
       <input
         type="radio"
         name="radio-10"
-        value="false"
+        value={false}
         class="radio"
         bind:group={born}
       />
     </label>
   </div>
 
-  {#if born === 'true'}
+  {#if born}
     <Input bind:value={birthdate} required type="date" label="Birthdate" />
     <Input bind:value={birthTime} type="time" label="Time of birth" />
     <Input

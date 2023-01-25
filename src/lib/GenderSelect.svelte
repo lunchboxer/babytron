@@ -11,7 +11,7 @@
       bind:group={gender}
       name="gender"
       checked
-      value=""
+      value={null}
       class="radio"
     />
   </label>
