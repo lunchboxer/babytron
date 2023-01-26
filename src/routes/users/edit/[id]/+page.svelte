@@ -5,8 +5,10 @@
   import Input from '$lib/Input.svelte'
   import Form from '$lib/Form.svelte'
   import Error from '$lib/Error.svelte'
+  import Checkbox from '$lib/Checkbox.svelte'
   import DeleteThing from '$lib/DeleteThing.svelte'
   import ChangePassword from '$lib/ChangePassword.svelte'
+  import { faToolbox } from '@fortawesome/free-solid-svg-icons'
 
   export let data = {}
   const { errors, loadUser } = data
@@ -34,12 +36,7 @@
     <Input bind:value={user.username} label="Username" required />
     <Input bind:value={user.name} label="Name" />
     <Input bind:value={user.email} label="Email address" type="email" />
-    <div class="form-control">
-      <label class="label cursor-pointer">
-        <span class="label-text">is admin</span>
-        <input type="checkbox" bind:checked={user.isAdmin} class="checkbox" />
-      </label>
-    </div>
+    <Checkbox bind:value={user.isAdmin} label="is admin" icon={faToolbox} />
     <input hidden value={user.id} name="id" />
   </Form>
 

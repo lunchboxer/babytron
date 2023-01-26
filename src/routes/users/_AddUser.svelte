@@ -2,7 +2,9 @@
   import { users } from '$lib/data/users.js'
   import Form from '$lib/Form.svelte'
   import Input from '$lib/Input.svelte'
+  import Checkbox from '$lib/Checkbox.svelte'
   import { notifications } from '$lib/notifications/index.js'
+  import { faToolbox } from '@fortawesome/free-solid-svg-icons'
 
   let username = ''
   let password = ''
@@ -41,10 +43,5 @@
   <Input bind:value={email} type="email" label="Email" required />
   <Input bind:value={name} label="Name" />
   <Input bind:value={password} type="password" label="Password" required />
-  <div class="form-control">
-    <label class="label cursor-pointer">
-      <span class="label-text">is admin</span>
-      <input type="checkbox" bind:checked={isAdmin} class="checkbox" />
-    </label>
-  </div>
+  <Checkbox bind:value={isAdmin} label="is admin" icon={faToolbox} />
 </Form>
