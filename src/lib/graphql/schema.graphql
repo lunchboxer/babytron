@@ -13,6 +13,8 @@ type Mutation {
   unbirth(id: ID!): Baby
   createMeasurement(input: CreateMeasurementInput!): Measurement
   deleteMeasurement(id: ID!): Measurement
+  createDiaper(input: CreateDiaperInput!): Diaper
+  deleteDiaper(id: ID!): Diaper
 }
 
 type Query {
@@ -55,6 +57,7 @@ type Baby {
   father: User
   mother: User
   measurements: [Measurement!]!
+  diapers: [Diaper!]!
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -70,6 +73,30 @@ type Measurement {
   type: String!
   value: Int!
   timestamp: DateTime
+  recordedBy: User
+}
+
+type Diaper {
+  id: ID!
+  baby: Baby!
+  timestamp: DateTime!
+  isWet: Boolean!
+  isDirty: Boolean!
+  """
+  Color and consistency of BMs and anything out of the ordinary
+  """
+  notes: String
+  recordedBy: User
+}
+
+type Sleep {
+  id: ID!
+  baby: Baby!
+  startTime: DateTime
+  endTime: DateTime
+  wakeReason: String
+  notes: String
+  recordedBy: User
 }
 
 input CreateUserInput {
@@ -114,4 +141,12 @@ input CreateMeasurementInput {
   type: String!
   value: Int!
   timestamp: DateTime
+}
+
+input CreateDiaperInput {
+  babyId: ID!
+  isWet: Boolean!
+  isDirty: Boolean!
+  timestamp: DateTime
+  notes: String
 }

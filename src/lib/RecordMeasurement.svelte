@@ -25,7 +25,7 @@
       })
       notifications.add({
         type: 'success',
-        text: 'Recorded birth weight successfully.',
+        text: 'Recorded weight successfully.',
       })
     }
     if (length) {
@@ -37,7 +37,7 @@
       })
       notifications.add({
         type: 'success',
-        text: 'Recorded birth length successfully.',
+        text: 'Recorded length successfully.',
       })
     }
     if (headCircumference) {
@@ -49,7 +49,7 @@
       })
       notifications.add({
         type: 'success',
-        text: 'Recorded birth head circumference successfully.',
+        text: 'Recorded head circumference successfully.',
       })
     }
   }

@@ -18,4 +18,10 @@ export const Baby = {
         where: { id: root.id },
       })
       .measurements(),
+  diapers: (root, _, { prisma }) =>
+    prisma.baby
+      .findUnique({
+        where: { id: root.id },
+      })
+      .diapers(),
 }

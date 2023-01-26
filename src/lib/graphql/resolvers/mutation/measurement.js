@@ -20,6 +20,9 @@ export const measurement = {
         baby: {
           connect: { id: babyId },
         },
+        recordedBy: {
+          connect: { id: context.user.id },
+        },
       },
     })
   },
