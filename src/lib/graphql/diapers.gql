@@ -1,0 +1,16 @@
+mutation CreateDiaper($input: CreateDiaperInput!) {
+  createDiaper(input: $input) {
+    ...AllDiaperFields
+  }
+}
+
+fragment AllDiaperFields on Diaper {
+  id
+  isWet
+  isDirty
+  notes
+  timestamp
+  baby {
+    id
+  }
+}
