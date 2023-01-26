@@ -2,6 +2,7 @@
   import { selectedBaby } from '$lib/data/babies.js'
   import RecordMeasurement from '$lib/RecordMeasurement.svelte'
   import RecordDiaper from '$lib/RecordDiaper.svelte'
+  import RecordSleep from '$lib/RecordSleep.svelte'
   import Stats from '$lib/Stats.svelte'
   import BabyName from '$lib/BabyName.svelte'
 </script>
@@ -13,3 +14,4 @@
 
 <RecordMeasurement baby={$selectedBaby} />
 <RecordDiaper baby={$selectedBaby} />
+<RecordSleep baby={$selectedBaby} />

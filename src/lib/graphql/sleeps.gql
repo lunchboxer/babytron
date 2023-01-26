@@ -1,0 +1,36 @@
+query OpenSleep($babyId: ID!) {
+  openSleep(babyId: $babyId) {
+    ...AllSleepFields
+  }
+}
+
+mutation CloseSleep($input: CloseSleepInput!) {
+  closeSleep(input: $input) {
+    ...AllSleepFields
+  }
+}
+
+mutation CreateSleep($input: CreateSleepInput!) {
+  createSleep(input: $input) {
+    ...AllSleepFields
+  }
+}
+
+mutation DeleteSleep($id: ID!) {
+  deleteSleep(id: $id) {
+    id
+  }
+}
+fragment AllSleepFields on Sleep {
+  id
+  wakeReason
+  start
+  end
+  notes
+  baby {
+    id
+  }
+  recordedBy {
+    id
+  }
+}

@@ -48,5 +48,6 @@
       users.remove(user.id)
     }}
     referrer="/users"
+    heading
   />
 {/if}

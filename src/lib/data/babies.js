@@ -28,7 +28,6 @@ function createBabiesStore() {
     },
     // Create //
     create: async (baby) => {
-      console.log('babies.create was sent:', baby)
       const response = await request(CREATE_BABY, { input: { ...baby } })
       update((existing) => [...existing, response.createBaby])
       return response.createBaby

@@ -3,10 +3,11 @@
   import Form from '$lib/Form.svelte'
   import Textarea from '$lib/Textarea.svelte'
   import Checkbox from '$lib/Checkbox.svelte'
+  import DashCard from '$lib/DashCard.svelte'
+  import Fa from 'svelte-fa'
   import { diapers } from '$lib/data/diapers.js'
   import { notifications } from '$lib/notifications'
-  import Fa from 'svelte-fa'
-  import { faPoop, faWater } from '@fortawesome/free-solid-svg-icons'
+  import { faPoop, faWater, faPoo } from '@fortawesome/free-solid-svg-icons'
 
   export let baby = {}
 
@@ -15,6 +16,7 @@
   let isWet = false
   let isDirty = false
   let notes
+  let soiled = false
 
   const onReset = () => {
     date = ''
@@ -22,6 +24,7 @@
     notes = ''
     isWet = false
     isDirty = false
+    soiled = false
   }
 
   const onSubmit = async () => {
@@ -37,15 +40,44 @@
       type: 'success',
       text: 'Recorded diaper successfully.',
     })
+    soiled = false
+  }
+  const gotSoiled = () => {
+    soiled = true
   }
 </script>
 
-<h2>Record Diaper</h2>
+<DashCard title="Diapers">
+  <div class="stats stats-vertical sm:stats-horizontal">
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <Fa icon={faPoo} size="2x" />
+      </div>
+      <div class="stat-title">Diapers</div>
+      <div class="stat-value">687</div>
+      <div class="stat-desc">Average 6.8/day</div>
+    </div>
 
-<Form {onSubmit} {onReset} submitLabel="Save Diaper">
-  <Input type="date" bind:value={date} label="Date" required />
-  <Input type="time" bind:value={time} label="Time" required />
-  <Checkbox bind:value={isWet} label="Wet" icon={faWater} />
-  <Checkbox bind:value={isDirty} label="Dirty" icon={faPoop} />
-  <Textarea label="Notes" bind:value={notes} />
-</Form>
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <Fa icon={faPoo} size="2x" />
+      </div>
+      <div class="stat-title">Diapers</div>
+      <div class="stat-value">687</div>
+      <div class="stat-desc">Average 6.8/day</div>
+    </div>
+  </div>
+  {#if soiled}
+    <Form {onSubmit} {onReset} submitLabel="Save Diaper">
+      <Input type="date" bind:value={date} label="Date" required />
+      <Input type="time" bind:value={time} label="Time" required />
+      <Checkbox bind:value={isWet} label="Wet" icon={faWater} />
+      <Checkbox bind:value={isDirty} label="Dirty" icon={faPoop} />
+      <Textarea label="Notes" bind:value={notes} />
+    </Form>
+  {:else}
+    <button class="btn btn-outline btn-sm" on:click={gotSoiled}>
+      Got a soiled diaper
+    </button>
+  {/if}
+</DashCard>

@@ -9,10 +9,9 @@ function createMeasurementsStore() {
     set,
     // Create //
     create: async (measurement) => {
-      const response = await request(CREATE_MEASUREMENT, {
+      await request(CREATE_MEASUREMENT, {
         input: { ...measurement },
       })
-      console.log('measurement repsonse', response.createMeasurement)
     },
     // Remove //
     remove: async (id) => {

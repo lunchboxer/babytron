@@ -10,6 +10,9 @@
   export let deleteFunction = () => {}
   export let mini = false
   export let icon = false
+  export let heading = false
+  export let label = 'Delete'
+  export let outline = false
   let errors = ''
   export let referrer = ''
   const modalId = 'modal' + nanoid(10)
@@ -31,18 +34,20 @@
 </script>
 
 {#if mini}
-  <label for={modalId} class="btn modal-button btn-sm"> Delete </label>
+  <label for={modalId} class="btn modal-button btn-sm"> {label} </label>
 {:else if icon}
   <label for={modalId} class="btn modal-button btn-ghost">
-    <slot>Delete</slot>
+    <slot>{label}</slot>
   </label>
 {:else}
-  <h2>Delete {thingName}</h2>
+  {#if heading}
+    <h2>Delete {thingName}</h2>
+  {/if}
 
   <Error {errors} />
   <label for={modalId} class="btn modal-button gap-2">
     <Fa icon={faTrash} />
-    Delete
+    {label}
   </label>
 {/if}
 
@@ -58,9 +63,14 @@
     <p>This action cannot be undone.</p>
     <div class="modal-action">
       <label for={modalId} class="btn">nevermind</label>
-      <button for={modalId} class="btn btn-error" on:click={runDeleteFunction}>
+      <label
+        for={modalId}
+        class="btn btn-error"
+        on:click={runDeleteFunction}
+        on:keypress={runDeleteFunction}
+      >
         Delete
-      </button>
+      </label>
     </div>
   </div>
 </div>

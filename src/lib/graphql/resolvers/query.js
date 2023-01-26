@@ -37,4 +37,11 @@ export const Query = {
   babies: (_, parameters, context) => {
     return context.prisma.baby.findMany()
   },
+  openSleep: (_, { babyId }, { prisma }) =>
+    prisma.sleep.findFirst({
+      where: {
+        baby: { id: babyId },
+        end: null,
+      },
+    }),
 }

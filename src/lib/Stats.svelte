@@ -9,7 +9,7 @@
   export let baby = {}
 </script>
 
-<div class="stats stats-vertical lg:stats-horizontal shadow">
+<div class="stats stats-vertical w-auto sm:stats-horizontal shadow">
   <div class="stat">
     <div class="stat-figure text-secondary">
       <Fa icon={faPoo} size="2x" />
@@ -17,14 +17,6 @@
     <div class="stat-title">Diapers</div>
     <div class="stat-value">687</div>
     <div class="stat-desc">Average 6.8/day</div>
-  </div>
-  <div class="stat">
-    <div class="stat-figure text-secondary">
-      <Fa icon={faWeightScale} size="2x" />
-    </div>
-    <div class="stat-title">Weight (kg)</div>
-    <div class="stat-value">6.2</div>
-    <div class="stat-desc">↗︎ ~150g/week</div>
   </div>
 
   <div class="stat">
@@ -34,13 +26,5 @@
     <div class="stat-title">Last fed</div>
     <div class="stat-value">45 min</div>
     <div class="stat-desc">212 minutes today</div>
-  </div>
-  <div class="stat">
-    <div class="stat-figure text-secondary">
-      <Fa icon={faRuler} size="2x" />
-    </div>
-    <div class="stat-title">Length (cm)</div>
-    <div class="stat-value">75.8</div>
-    <div class="stat-desc">↗︎︎ ~2.5 cm/month</div>
   </div>
 </div>

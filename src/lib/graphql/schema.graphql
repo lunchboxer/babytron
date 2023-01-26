@@ -15,6 +15,9 @@ type Mutation {
   deleteMeasurement(id: ID!): Measurement
   createDiaper(input: CreateDiaperInput!): Diaper
   deleteDiaper(id: ID!): Diaper
+  createSleep(input: CreateSleepInput!): Sleep
+  deleteSleep(id: ID!): Sleep
+  closeSleep(input: CloseSleepInput!): Sleep
 }
 
 type Query {
@@ -24,6 +27,7 @@ type Query {
   users: [User]
   babies: [Baby]
   baby(id: ID!): Baby
+  openSleep(babyId: ID!): Sleep
 }
 
 type User {
@@ -92,8 +96,8 @@ type Diaper {
 type Sleep {
   id: ID!
   baby: Baby!
-  startTime: DateTime
-  endTime: DateTime
+  start: DateTime!
+  end: DateTime
   wakeReason: String
   notes: String
   recordedBy: User
@@ -148,5 +152,20 @@ input CreateDiaperInput {
   isWet: Boolean!
   isDirty: Boolean!
   timestamp: DateTime
+  notes: String
+}
+
+input CreateSleepInput {
+  babyId: ID!
+  start: DateTime!
+  end: DateTime
+  wakeReason: String
+  notes: String
+}
+
+input CloseSleepInput {
+  id: ID!
+  end: DateTime!
+  wakeReason: String
   notes: String
 }

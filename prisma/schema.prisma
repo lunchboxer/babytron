@@ -71,7 +71,6 @@ model Diaper {
   timestamp  DateTime @default(now())
   isWet      Boolean  @default(false)
   isDirty    Boolean  @default(false)
-  // Note the color and consitency of BMs and anything out of the ordinary.
   notes      String?
   recordedBy User     @relation(fields: [userId], references: [id])
   userId     String
@@ -81,8 +80,8 @@ model Sleep {
   id         String    @id @default(cuid())
   baby       Baby      @relation(fields: [babyId], references: [id], onDelete: Cascade)
   babyId     String
-  startTime  DateTime?
-  endTime    DateTime?
+  start      DateTime?
+  end        DateTime?
   wakeReason String?
   notes      String?
   recordedBy User      @relation(fields: [userId], references: [id])

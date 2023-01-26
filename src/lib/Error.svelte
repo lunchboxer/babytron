@@ -10,7 +10,7 @@
 </script>
 
 {#if getMessage(errors)}
-  <div class="container mb-2">
+  <div class="container my-2">
     <div class="alert alert-error shadow-lg">
       <div>
         <svg

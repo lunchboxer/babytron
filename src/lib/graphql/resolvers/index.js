@@ -5,6 +5,7 @@ import { User } from './user.js'
 import { Baby } from './baby.js'
 import { Measurement } from './measurement.js'
 import { Diaper } from './diaper.js'
+import { Sleep } from './sleep.js'
 
 export const resolvers = {
   DateTime: DateTimeResolver,
@@ -15,4 +16,5 @@ export const resolvers = {
   Baby,
   Measurement,
   Diaper,
+  Sleep,
 }

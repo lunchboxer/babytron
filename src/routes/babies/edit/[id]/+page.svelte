@@ -58,5 +58,6 @@
       babies.remove(baby.id)
     }}
     referrer="/babies"
+    heading
   />
 {/if}
