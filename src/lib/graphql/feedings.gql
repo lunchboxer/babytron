@@ -1,0 +1,39 @@
+query OpenFeeding($babyId: ID!) {
+  openFeeding(babyId: $babyId) {
+    ...AllFeedingFields
+  }
+}
+mutation CreateFeeding($input: CreateFeedingInput!) {
+  createFeeding(input: $input) {
+    ...AllFeedingFields
+  }
+}
+
+mutation UpdateFeeding($input: UpdateFeedingInput!) {
+  updateFeeding(input: $input) {
+    ...AllFeedingFields
+  }
+}
+
+mutation DeleteFeeding($id: ID!) {
+  deleteFeeding(id: $id) {
+    id
+  }
+}
+
+fragment AllFeedingFields on Feeding {
+  id
+  baby {
+    id
+  }
+  start
+  end
+  notes
+  startedBreast
+  switched
+  type
+  volumeInMl
+  recordedBy {
+    id
+  }
+}

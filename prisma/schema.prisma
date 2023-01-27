@@ -92,16 +92,11 @@ model Feeding {
   id            String      @id @default(cuid())
   baby          Baby        @relation(fields: [babyId], references: [id], onDelete: Cascade)
   babyId        String
-  startTime     DateTime?
-  endTime       DateTime?
+  start         DateTime?
+  end           DateTime?
   type          FeedingType
-  byBottle      Boolean
-  // If the baby fed from the bottle, how much was consumed?
   volumeInMl    Int?
-  byBreast      Boolean
-  // Which breast did feeding start on?
   startedBreast Breast?
-  // Did to baby switch to the other breast?
   switched      Boolean?
   notes         String?
   recordedBy    User        @relation(fields: [userId], references: [id])
@@ -114,8 +109,9 @@ enum Breast {
 }
 
 enum FeedingType {
-  BREASTMILK
-  FORMULA
+  BREASTBREASTMILK
+  BOTTLEBREASTMILK
+  BOTTLEFORMULA
   SOLIDFOOD
 }
 

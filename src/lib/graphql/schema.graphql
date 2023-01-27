@@ -18,6 +18,9 @@ type Mutation {
   createSleep(input: CreateSleepInput!): Sleep
   deleteSleep(id: ID!): Sleep
   closeSleep(input: CloseSleepInput!): Sleep
+  createFeeding(input: CreateFeedingInput!): Feeding
+  updateFeeding(input: UpdateFeedingInput!): Feeding
+  deleteFeeding(id: ID!): Feeding
 }
 
 type Query {
@@ -28,6 +31,7 @@ type Query {
   babies: [Baby]
   baby(id: ID!): Baby
   openSleep(babyId: ID!): Sleep
+  openFeeding(babyId: ID!): Feeding
 }
 
 type User {
@@ -103,6 +107,39 @@ type Sleep {
   recordedBy: User
 }
 
+type Feeding {
+  id: ID!
+  baby: Baby
+  start: DateTime!
+  end: DateTime
+  type: FeedingType
+  """
+  If the baby fed from the bottle, how much was consumed?
+  """
+  volumeInMl: Int
+  """
+  Which breast did feeding start on?
+  """
+  startedBreast: Breast
+  """
+  Did the baby switch to the other breast?
+  """
+  switched: Boolean
+  notes: String
+  recordedBy: User
+}
+
+enum FeedingType {
+  BREASTBREASTMILK
+  BOTTLEBREASTMILK
+  BOTTLEFORMULA
+  SOLIDFOOD
+}
+
+enum Breast {
+  LEFT
+  RIGHT
+}
 input CreateUserInput {
   username: String!
   password: String!
@@ -167,5 +204,27 @@ input CloseSleepInput {
   id: ID!
   end: DateTime!
   wakeReason: String
+  notes: String
+}
+
+input UpdateFeedingInput {
+  id: ID!
+  start: DateTime
+  end: DateTime
+  type: FeedingType
+  volumeInMl: Int
+  startedBreast: Breast
+  switched: Boolean
+  notes: String
+}
+
+input CreateFeedingInput {
+  babyId: ID!
+  start: DateTime!
+  end: DateTime
+  type: FeedingType
+  volumeInMl: Int
+  startedBreast: Breast
+  switched: Boolean
   notes: String
 }

@@ -47,24 +47,18 @@
   }
 </script>
 
-<DashCard title="Diapers">
-  <div class="stats stats-vertical sm:stats-horizontal">
+<DashCard title="Diapers" icon={faPoo}>
+  <div class="stats stats-horizontal">
     <div class="stat">
-      <div class="stat-figure text-secondary">
-        <Fa icon={faPoo} size="2x" />
-      </div>
       <div class="stat-title">Diapers</div>
-      <div class="stat-value">687</div>
-      <div class="stat-desc">Average 6.8/day</div>
+      <div class="stat-value text-primary">687</div>
+      <div class="stat-desc">Avg 6.8/day</div>
     </div>
 
     <div class="stat">
-      <div class="stat-figure text-secondary">
-        <Fa icon={faPoo} size="2x" />
-      </div>
       <div class="stat-title">Diapers</div>
       <div class="stat-value">687</div>
-      <div class="stat-desc">Average 6.8/day</div>
+      <div class="stat-desc">Avg 6.8/day</div>
     </div>
   </div>
   {#if soiled}

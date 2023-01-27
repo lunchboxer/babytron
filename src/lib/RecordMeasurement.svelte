@@ -4,8 +4,7 @@
   import DashCard from '$lib/DashCard.svelte'
   import { measurements } from '$lib/data/measurements.js'
   import { notifications } from '$lib/notifications'
-  import { faWeightScale, faRuler } from '@fortawesome/free-solid-svg-icons'
-  import Fa from 'svelte-fa'
+  import { faRuler } from '@fortawesome/free-solid-svg-icons'
 
   export let baby = {}
   let weight
@@ -65,27 +64,20 @@
   }
 </script>
 
-<DashCard title="Measurements">
-  <div class="stats stats-vertical sm:stats-horizontal">
+<DashCard title="Measurements" icon={faRuler}>
+  <div class="stats stats-horizontal mb-2">
     <div class="stat">
-      <div class="stat-figure text-secondary">
-        <Fa icon={faWeightScale} size="2x" />
-      </div>
       <div class="stat-title">Weight (kg)</div>
       <div class="stat-value">6.2</div>
       <div class="stat-desc">↗︎ ~150g/week</div>
     </div>
 
     <div class="stat">
-      <div class="stat-figure text-secondary">
-        <Fa icon={faRuler} size="2x" />
-      </div>
       <div class="stat-title">Length (cm)</div>
       <div class="stat-value">75.8</div>
       <div class="stat-desc">↗︎︎ ~2.5 cm/month</div>
     </div>
   </div>
-
   {#if show}
     <Form {onSubmit} {onReset} submitLabel="Save">
       <Input
@@ -113,8 +105,8 @@
       />
     </Form>
   {:else}
-    <button class="btn btn-outline btn-sm" on:click={showForm}
-      >Add measurement</button
-    >
+    <button class="btn btn-outline btn-sm" on:click={showForm}>
+      Add measurement
+    </button>
   {/if}
 </DashCard>

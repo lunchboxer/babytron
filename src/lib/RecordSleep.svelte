@@ -24,8 +24,21 @@
   })
 </script>
 
-<DashCard title="Sleeps">
+<DashCard title="Sleeps" icon={faBed}>
   <Error {errors} />
+  <div class="stats stats-horizontal">
+    <div class="stat">
+      <div class="stat-title">total hours</div>
+      <div class="stat-value">87</div>
+      <div class="stat-desc">Avg 16.8/day</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Sleep today</div>
+      <div class="stat-value">8.5hr</div>
+      <div class="stat-desc">woke 4hr ago</div>
+    </div>
+  </div>
 
   {#if loading}
     <p>...loading sleep data</p>

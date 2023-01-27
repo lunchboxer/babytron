@@ -44,4 +44,11 @@ export const Query = {
         end: null,
       },
     }),
+  openFeeding: (_, { babyId }, { prisma }) =>
+    prisma.feeding.findFirst({
+      where: {
+        baby: { id: babyId },
+        end: null,
+      },
+    }),
 }
