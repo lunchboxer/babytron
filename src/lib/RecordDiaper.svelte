@@ -7,16 +7,11 @@
   import { diapers } from '$lib/data/diapers.js'
   import { notifications } from '$lib/notifications'
   import { faPoop, faWater, faPoo } from '@fortawesome/free-solid-svg-icons'
+  import { printShortDateString } from '$lib/data/date-helpers.js'
 
   export let baby = {}
 
-  const staleNow = new Date()
-  const yyyy = staleNow.getFullYear()
-  const month = staleNow.getMonth() + 1
-  const mm = month.toString().padStart(2, 0)
-  const dd = staleNow.getDate()
-
-  let date = `${yyyy}-${mm}-${dd}`
+  let date = printShortDateString()
   let time
   let isWet = false
   let isDirty = false
@@ -24,7 +19,7 @@
   let soiled = false
 
   const onReset = () => {
-    date = `${yyyy}-${mm}-${dd}`
+    date = printShortDateString()
     time = ''
     notes = ''
     isWet = false

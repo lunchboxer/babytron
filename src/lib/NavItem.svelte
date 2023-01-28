@@ -14,7 +14,7 @@
 <li class="m-1" class:gap-2={icon}>
   {#if action}
     <button on:click={action}>
-      <Fa {icon} />
+      <Fa {icon} fw />
       {label}
       {#if count !== undefined}
         <div class="badge badge-outline">{count}</div>
@@ -22,7 +22,7 @@
     </button>
   {:else}
     <a href={url} class:active>
-      <Fa {icon} />
+      <Fa {icon} fw />
       {label}
       {#if count !== undefined}
         <div class="badge badge-outline">{count}</div>

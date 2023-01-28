@@ -1,5 +1,16 @@
 import { subDays, differenceInCalendarDays } from 'date-fns'
 
+// default to today
+// useful as default value in a <input type="date" />
+export const printShortDateString = (date) => {
+  const workingDate = date || new Date()
+  const yyyy = workingDate.getFullYear()
+  const month = workingDate.getMonth() + 1
+  const mm = month.toString().padStart(2, 0)
+  const dd = workingDate.getDate()
+  return `${yyyy}-${mm}-${dd}`
+}
+
 export const gestationalAgeInDays = (dueDate) => {
   // take dueDate and find date 280 days before
   const date = new Date(dueDate)

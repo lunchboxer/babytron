@@ -5,16 +5,11 @@
   import Select from '$lib/Select.svelte'
   import { feedings } from '$lib/data/feedings.js'
   import { notifications } from '$lib/notifications'
+  import { printShortDateString } from '$lib/data/date-helpers.js'
 
   export let baby = {}
 
-  const staleNow = new Date()
-  const yyyy = staleNow.getFullYear()
-  const month = staleNow.getMonth() + 1
-  const mm = month.toString().padStart(2, 0)
-  const dd = staleNow.getDate()
-
-  let startDate = `${yyyy}-${mm}-${dd}`
+  let startDate = printShortDateString()
   let startTime
   let notes
   let type = ''
@@ -22,7 +17,7 @@
   let startedBreast
 
   const onReset = () => {
-    startDate = ''
+    startDate = printShortDateString()
     startTime = ''
     notes = ''
     type = ''

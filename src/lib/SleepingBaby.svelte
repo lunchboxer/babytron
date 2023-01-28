@@ -7,18 +7,14 @@
   import { notifications } from '$lib/notifications'
   import { timer } from '$lib/data/timer.js'
   import { formatDistanceToNow } from 'date-fns'
+  import { printShortDateString } from '$lib/data/date-helpers.js'
 
   export let sleep
 
-  const staleNow = new Date()
-  const yyyy = staleNow.getFullYear()
-  const month = staleNow.getMonth() + 1
-  const mm = month.toString().padStart(2, 0)
-  const dd = staleNow.getDate()
   const clock = timer({ interval: 500 })
 
   const sleepBackup = sleep
-  let endDate = `${yyyy}-${mm}-${dd}`
+  let endDate = printShortDateString()
   let endTime
   let wakeReason = ''
   let notes
@@ -35,7 +31,7 @@
   }
 
   const onReset = () => {
-    endDate = `${yyyy}-${mm}-${dd}`
+    endDate = printShortDateString()
     endTime = ''
     notes = sleepBackup.notes
     wakeReason = ''

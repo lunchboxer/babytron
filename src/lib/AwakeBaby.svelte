@@ -4,22 +4,17 @@
   import Textarea from '$lib/Textarea.svelte'
   import { sleeps } from '$lib/data/sleeps.js'
   import { notifications } from '$lib/notifications'
+  import { printShortDateString } from '$lib/data/date-helpers.js'
 
   export let baby = {}
 
-  const staleNow = new Date()
-  const yyyy = staleNow.getFullYear()
-  const month = staleNow.getMonth() + 1
-  const mm = month.toString().padStart(2, 0)
-  const dd = staleNow.getDate()
-
-  let startDate = `${yyyy}-${mm}-${dd}`
+  let startDate = printShortDateString()
   let startTime
   let notes
   let asleep = false
 
   const onReset = () => {
-    startDate = `${yyyy}-${mm}-${dd}`
+    startDate = printShortDateString()
     startTime = ''
     notes = ''
     asleep = false

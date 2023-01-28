@@ -8,25 +8,20 @@
   import { notifications } from '$lib/notifications'
   import { timer } from '$lib/data/timer.js'
   import { formatDistanceToNow } from 'date-fns'
+  import { printShortDateString } from '$lib/data/date-helpers.js'
 
   export let feeding = {}
 
   const clock = timer({ interval: 500 })
 
-  const staleNow = new Date()
-  const yyyy = staleNow.getFullYear()
-  const month = staleNow.getMonth() + 1
-  const mm = month.toString().padStart(2, 0)
-  const dd = staleNow.getDate()
-
   const feedingBackup = feeding
 
-  let endDate = `${yyyy}-${mm}-${dd}`
+  let endDate = printShortDateString()
   let endTime
   let showForm = false
 
   const onReset = () => {
-    endDate = `${yyyy}-${mm}-${dd}`
+    endDate = printShortDateString()
     endTime = ''
     feeding = { ...feedingBackup }
     showForm = false
