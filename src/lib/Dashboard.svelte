@@ -4,10 +4,11 @@
   import RecordDiaper from '$lib/RecordDiaper.svelte'
   import RecordSleep from '$lib/RecordSleep.svelte'
   import RecordFeeding from '$lib/RecordFeeding.svelte'
-  import BabyName from '$lib/BabyName.svelte'
+  import { ageStringFromBirthdate } from '$lib/data/date-helpers.js'
 </script>
 
-<h1><BabyName baby={$selectedBaby} /></h1>
+<h1>Dashboard</h1>
+<p>Age: {ageStringFromBirthdate($selectedBaby.birthdate)}</p>
 
 <RecordMeasurement baby={$selectedBaby} />
 <RecordDiaper baby={$selectedBaby} />
