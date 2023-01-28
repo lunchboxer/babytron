@@ -42,8 +42,7 @@ function calculateAge(dob) {
 export const ageStringFromBirthdate = (birthdate) => {
   if (!birthdate) return
   let ageString = ''
-  // const bdate = new Date(birthdate)
-  const bdate = new Date(2020, 7, 28)
+  const bdate = new Date(birthdate)
   const now = new Date()
   const day = differenceInCalendarDays(now, bdate)
   // count in days up to 7 days
@@ -82,7 +81,7 @@ export const ageStringFromBirthdate = (birthdate) => {
   // add haf years up to five. Number of days in a year isn't exact
   // but half years aren't expected to be exact
   if (year < 5) {
-    const yearRemainder = Math.trunc(day % 365)
+    const yearRemainder = Math.trunc(day % 365.25)
     if (yearRemainder >= 153) return `${year}½ years`
   }
   return `${year} years`
