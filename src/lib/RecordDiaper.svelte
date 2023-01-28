@@ -4,14 +4,19 @@
   import Textarea from '$lib/Textarea.svelte'
   import Checkbox from '$lib/Checkbox.svelte'
   import DashCard from '$lib/DashCard.svelte'
-  import Fa from 'svelte-fa'
   import { diapers } from '$lib/data/diapers.js'
   import { notifications } from '$lib/notifications'
   import { faPoop, faWater, faPoo } from '@fortawesome/free-solid-svg-icons'
 
   export let baby = {}
 
-  let date
+  const staleNow = new Date()
+  const yyyy = staleNow.getFullYear()
+  const month = staleNow.getMonth() + 1
+  const mm = month.toString().padStart(2, 0)
+  const dd = staleNow.getDate()
+
+  let date = `${yyyy}-${mm}-${dd}`
   let time
   let isWet = false
   let isDirty = false
@@ -19,7 +24,7 @@
   let soiled = false
 
   const onReset = () => {
-    date = ''
+    date = `${yyyy}-${mm}-${dd}`
     time = ''
     notes = ''
     isWet = false
