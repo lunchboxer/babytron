@@ -14,24 +14,24 @@
   class:border-primary={show}
 >
   <div class="card-body py-4 place-items-center">
-    <div
+    <h2
       class="m-0 p-0 cursor-pointer w-full"
       on:keypress={toggleShow}
       on:click={toggleShow}
     >
-      <span class="icon mr-2 ">
-        <Fa {icon} pull="left" translateY={0.1} />
+      <span class="icon mr-4">
+        <Fa {icon} pull="left" fw translateY={0.1} />
       </span>
       {title}
       <div class="swap swap-active swap-flip float-right text-sm">
         <div class:swap-off={!show} class:swap-on={show}>
-          <Fa icon={faChevronUp} translateY={0.5} />
+          <Fa icon={faChevronUp} translateY={0.6} />
         </div>
         <div class:swap-off={show} class:swap-on={!show}>
-          <Fa icon={faChevronDown} translateY={0.5} />
+          <Fa icon={faChevronDown} translateY={0.6} />
         </div>
       </div>
-    </div>
+    </h2>
     {#if show}
       <slot />
     {/if}
