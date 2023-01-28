@@ -31,7 +31,7 @@
   }
 
   const onSubmit = async () => {
-    const start = new Date(`${startDate}, ${startTime}`)
+    const start = new Date(`${startDate}, ${startTime}`).toISOString()
     await feedings.create({
       notes,
       babyId: baby.id,

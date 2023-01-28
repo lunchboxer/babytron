@@ -25,7 +25,7 @@
   let woke = false
 
   const onSubmit = async () => {
-    const end = new Date(`${endDate}, ${endTime}`)
+    const end = new Date(`${endDate}, ${endTime}`).toISOString()
     await openSleep.closeSleep({ id: sleep.id, end, wakeReason, notes })
     notifications.add({
       type: 'success',
@@ -71,11 +71,12 @@
   </Form>
 {:else}
   <div class="card-actions">
-    <button class="btn btn-outline" on:click={wokeUp}> Woke up </button>
+    <button class="btn btn-outline btn-sm" on:click={wokeUp}> Woke up </button>
     <DeleteThing
       {deleteFunction}
+      mini
       thingName="sleep record starting {sleepStartString}"
-      label="discard sleep record"
+      label="discard record"
     />
   </div>
 {/if}

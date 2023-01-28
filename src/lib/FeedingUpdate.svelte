@@ -3,10 +3,15 @@
   import Form from '$lib/Form.svelte'
   import Textarea from '$lib/Textarea.svelte'
   import Checkbox from '$lib/Checkbox.svelte'
-  import { diapers } from '$lib/data/diapers.js'
+  import DeleteThing from '$lib/DeleteThing.svelte'
+  import { feedings } from '$lib/data/feedings.js'
   import { notifications } from '$lib/notifications'
+  import { timer } from '$lib/data/timer.js'
+  import { formatDistanceToNow } from 'date-fns'
 
-  export let baby = {}
+  export let feeding = {}
+
+  const clock = timer({ interval: 500 })
 
   const staleNow = new Date()
   const yyyy = staleNow.getFullYear()
@@ -14,53 +19,74 @@
   const mm = month.toString().padStart(2, 0)
   const dd = staleNow.getDate()
 
-  let startDate = `${yyyy}-${mm}-${dd}`
+  const feedingBackup = feeding
+
   let endDate = `${yyyy}-${mm}-${dd}`
-  let startTime
   let endTime
-  let notes
   let showForm = false
-  let volumeInMl
 
   const onReset = () => {
-    startDate = ''
-    startTime = ''
-    notes = ''
+    endDate = `${yyyy}-${mm}-${dd}`
+    endTime = ''
+    feeding = { ...feedingBackup }
     showForm = false
   }
 
   const onSubmit = async () => {
-    const timestamp = new Date().toISOString()
-    await diapers.create({
-      notes,
-      babyId: baby.id,
-      timestamp,
-    })
+    feeding.end = new Date(`${endDate}, ${endTime}`).toISOString()
+    await feedings.patch(feeding)
     notifications.add({
       type: 'success',
-      text: 'Recorded diaper successfully.',
+      text: 'Completed feeding record successfully.',
     })
     showForm = false
   }
-  const feeding = () => {
+  const showIt = () => {
     showForm = true
+  }
+
+  const feedingDuration = (clock, feeding) => {
+    const startDateObject = new Date(feeding.start)
+    return formatDistanceToNow(startDateObject)
+  }
+  const feedingStartString = new Date(feeding.start).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+
+  const deleteFunction = async () => {
+    await feedings.remove(feeding.id)
   }
 </script>
 
+<p>
+  Feeding started {feedingDuration($clock, feeding)} ago at {feedingStartString}
+</p>
 {#if showForm}
   <Form {onSubmit} {onReset} submitLabel="Save Feeding">
     <Input type="date" bind:value={endDate} label="End date" required />
     <Input type="time" bind:value={endTime} label="End time" required />
-    <Input
-      type="number"
-      bind:value={volumeInMl}
-      label="Volume consumed in ml"
-    />
-    <Checkbox label="Switched breasts" />
-    <Textarea label="Notes" bind:value={notes} />
+    {#if feeding.type === 'BREASTBREASTMILK'}
+      <Checkbox label="Switched breasts" bind:value={feeding.switched} />
+    {:else}
+      <Input
+        type="number"
+        bind:value={feeding.volumeInMl}
+        label="Volume consumed in ml"
+      />
+    {/if}
+    <Textarea label="Notes" bind:value={feeding.notes} />
   </Form>
 {:else}
-  <button class="btn btn-outline btn-sm" on:click={feeding}>
-    New Feeding
-  </button>
+  <div class="card-action">
+    <button class="btn btn-outline btn-sm" on:click={showIt}>
+      Complete record
+    </button>
+    <DeleteThing
+      {deleteFunction}
+      mini
+      thingName="feeding record starting at {feedingStartString}"
+      label="discard"
+    />
+  </div>
 {/if}

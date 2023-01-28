@@ -18,13 +18,13 @@ function createFeedingStore() {
     create: async (feeding) => {
       const response = await request(CREATE_FEEDING, { input: { ...feeding } })
       openFeeding.update((existing) => {
-        existing[feeding.babyId] = response.createSleep
+        existing[feeding.babyId] = response.createFeeding
         return { ...existing }
       })
       update((existing) => {
-        return [...existing, response.createSleep]
+        return [...existing, response.createFeeding]
       })
-      return response.createSleep
+      return response.createFeeding
     },
     // Patch //
     patch: async function (feeding) {
@@ -38,9 +38,9 @@ function createFeedingStore() {
           return f
         }),
       )
-      if (response.updateBaby?.end) {
+      if (response.updateFeeding?.end) {
         openFeeding.update((existing) => {
-          if (existing[baby.id]?.id === baby.id) delete existing[baby.id]
+          if (existing[baby.id]?.id === feeding.id) delete existing[baby.id]
           return { ...existing }
         })
       }

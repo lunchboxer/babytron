@@ -26,7 +26,7 @@
   }
 
   const onSubmit = async () => {
-    const start = new Date(`${startDate}, ${startTime}`)
+    const start = new Date(`${startDate}, ${startTime}`).toISOString()
     await sleeps.create({
       start,
       notes,
