@@ -8,6 +8,7 @@
   import { me } from '$lib/data/me.js'
   import SidebarNav from '$lib/SidebarNav.svelte'
   import InitialDataLoader from '$lib/InitialDataLoader.svelte'
+  import Loading from '$lib/Loading.svelte'
 
   export let data = {}
   // sidebar binding
@@ -22,7 +23,7 @@
   <input id="my-drawer" type="checkbox" class="drawer-toggle" bind:checked />
   <div class="drawer-content flex flex-col">
     <Header />
-
+    <Loading />
     <div class="container prose mx-auto px-4 py-4 mt-20">
       {#if !$me?.id && $page.url.pathname !== '/settings'}
         <Login />

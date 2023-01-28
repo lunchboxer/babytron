@@ -12,7 +12,6 @@
   export let icon = false
   export let heading = false
   export let label = 'Delete'
-  export let outline = false
   let errors = ''
   export let referrer = ''
   const modalId = 'modal' + nanoid(10)

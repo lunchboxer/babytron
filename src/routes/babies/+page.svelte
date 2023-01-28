@@ -29,7 +29,7 @@
     </p>
     <div class="flex flex-wrap">
       {#each $babies as baby}
-        <div class="card w-96 lg:card-side bg-base-200 shadow m-2">
+        <div class="card w-96 lg:card-side card-bordered shadow m-2">
           <div class="card-body pt-0">
             <h2 class="card-title">
               <BabyName {baby} />
