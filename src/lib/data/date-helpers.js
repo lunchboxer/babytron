@@ -101,6 +101,7 @@ const daysOfTheWeek = [
   'Friday',
   'Saturday',
 ]
+
 // Format the date relative to today
 // return 'yesterday' or 'last Tuesday'
 // only works with past dates
