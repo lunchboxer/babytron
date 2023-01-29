@@ -1,9 +1,10 @@
-import { subDays, differenceInCalendarDays } from 'date-fns'
+import { subDays, differenceInCalendarDays, getWeek } from 'date-fns'
 
+const now = new Date()
 // default to today
 // useful as default value in a <input type="date" />
 export const printShortDateString = (date) => {
-  const workingDate = date || new Date()
+  const workingDate = date || now
   const yyyy = workingDate.getFullYear()
   const month = workingDate.getMonth() + 1
   const mm = month.toString().padStart(2, 0)
@@ -15,10 +16,8 @@ export const gestationalAgeInDays = (dueDate) => {
   // take dueDate and find date 280 days before
   const date = new Date(dueDate)
   const dayZero = subDays(date, 280)
-  // get today's date
-  const today = new Date()
   // return difference in days
-  return differenceInCalendarDays(today, dayZero)
+  return differenceInCalendarDays(now, dayZero)
 }
 export const gestationalAgeInWeeksString = (dueDate) => {
   const inDays = gestationalAgeInDays(dueDate)
@@ -28,14 +27,10 @@ export const gestationalAgeInWeeksString = (dueDate) => {
 }
 export const daysToEDD = (dueDate) => {
   const targetDate = new Date(dueDate)
-  const today = new Date()
-  return differenceInCalendarDays(targetDate, today)
+  return differenceInCalendarDays(targetDate, now)
 }
 
-export const isFuture = (date) => {
-  const today = new Date()
-  return today <= new Date(date)
-}
+export const isFuture = (date) => now <= new Date(date)
 
 export const toDateString = (date) => {
   const dateObject = new Date(date)
@@ -54,7 +49,6 @@ export const ageStringFromBirthdate = (birthdate) => {
   if (!birthdate) return
   let ageString = ''
   const bdate = new Date(birthdate)
-  const now = new Date()
   const day = differenceInCalendarDays(now, bdate)
   // count in days up to 7 days
   if (day < 7) {
@@ -96,4 +90,33 @@ export const ageStringFromBirthdate = (birthdate) => {
     if (yearRemainder >= 153) return `${year}½ years`
   }
   return `${year} years`
+}
+
+const daysOfTheWeek = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+]
+// Format the date relative to today
+// return 'yesterday' or 'last Tuesday'
+// only works with past dates
+export const dateRelativeString = (date) => {
+  const dateObject = new Date(date)
+  const todayMidnight = new Date(
+    `${printShortDateString()}, 00:00:00`,
+  ).toISOString()
+  if (date >= todayMidnight) return 'today'
+  const yesterdayMidnight = subDays(new Date(todayMidnight), 1)
+  if (date >= yesterdayMidnight) return 'yesterday'
+  const thisWeek = getWeek(now)
+  const thatWeek = getWeek(dateObject)
+  if (thisWeek === thatWeek) return daysOfTheWeek[dateObject.getDay()]
+  if (thisWeek === thatWeek + 1) {
+    return `last ${daysOfTheWeek[dateObject.getDay()]}`
+  }
+  return dateObject.toDateString()
 }

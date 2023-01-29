@@ -35,6 +35,8 @@ type Query {
   recentSleeps(babyId: ID, limit: Int): [Sleep]
   recentFeedings(babyId: ID, limit: Int): [Feeding]
   recentDiapers(babyId: ID, limit: Int): [Diaper]
+  weight(babyId: ID): Measurement
+  length(babyId: ID): Measurement
 }
 
 type User {

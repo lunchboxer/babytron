@@ -1,16 +1,33 @@
 <script>
   import Input from '$lib/Input.svelte'
   import Form from '$lib/Form.svelte'
+  import Error from '$lib/Error.svelte'
   import DashCard from '$lib/DashCard.svelte'
+  import MeasurementStats from '$lib/MeasurementStats.svelte'
+  import { onMount } from 'svelte'
   import { measurements } from '$lib/data/measurements.js'
   import { notifications } from '$lib/notifications'
   import { faRuler } from '@fortawesome/free-solid-svg-icons'
 
   export let baby = {}
+
   let weight
   let length
   let headCircumference
   let show = false
+  let loading = false
+  let errors = ''
+
+  onMount(async () => {
+    loading = true
+    try {
+      await measurements.get(baby.id)
+    } catch (error) {
+      errors = error
+    } finally {
+      loading = false
+    }
+  })
 
   const onReset = () => {
     weight = ''
@@ -65,19 +82,12 @@
 </script>
 
 <DashCard title="Measurements" icon={faRuler}>
-  <div class="stats stats-horizontal mb-2">
-    <div class="stat">
-      <div class="stat-title">Weight (kg)</div>
-      <div class="stat-value">6.2</div>
-      <div class="stat-desc">↗︎ ~150g/week</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-title">Length (cm)</div>
-      <div class="stat-value">75.8</div>
-      <div class="stat-desc">↗︎︎ ~2.5 cm/month</div>
-    </div>
-  </div>
+  <Error {errors} />
+  {#if loading}
+    <p>...loading measurements</p>
+  {:else}
+    <MeasurementStats />
+  {/if}
   {#if show}
     <Form {onSubmit} {onReset} submitLabel="Save">
       <Input

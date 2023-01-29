@@ -75,4 +75,26 @@ export const Query = {
       where,
     })
   },
+  weight: async (_, { babyId }, { prisma }) => {
+    const heights = await prisma.measurement.findMany({
+      take: 1,
+      where: {
+        baby: { id: babyId },
+        type: 'weightInGrams',
+      },
+      orderBy: { timestamp: 'desc' },
+    })
+    return heights[0]
+  },
+  length: async (_, { babyId }, { prisma }) => {
+    const lengths = await prisma.measurement.findMany({
+      take: 1,
+      where: {
+        baby: { id: babyId },
+        type: 'lengthInMillimeters',
+      },
+      orderBy: { timestamp: 'desc' },
+    })
+    return lengths[0]
+  },
 }

@@ -1,6 +1,20 @@
+query LatestMeasurements($babyId: ID!) {
+  weight(babyId: $babyId) {
+    ...AllMeasurementFields
+  }
+  length(babyId: $babyId) {
+    ...AllMeasurementFields
+  }
+}
 mutation CreateMeasurement($input: CreateMeasurementInput!) {
   createMeasurement(input: $input) {
     ...AllMeasurementFields
+  }
+}
+
+mutation DeleteMeasurement($id: ID!) {
+  deleteMeasurement(id: $id) {
+    id
   }
 }
 
