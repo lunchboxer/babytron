@@ -1,6 +1,18 @@
+query RecentDiapers($babyId: ID) {
+  recentDiapers(babyId: $babyId) {
+    ...AllDiaperFields
+  }
+}
+
 mutation CreateDiaper($input: CreateDiaperInput!) {
   createDiaper(input: $input) {
     ...AllDiaperFields
+  }
+}
+
+mutation DeleteDiaper($id: ID!) {
+  deleteDiaper(id: $id) {
+    id
   }
 }
 

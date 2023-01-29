@@ -42,7 +42,7 @@ function createSleepsStore() {
     // Remove //
     remove: async (id) => {
       await request(DELETE_SLEEP, { id })
-      update((existing) => existing.filter((b) => b.id !== id))
+      update((existing) => existing.filter((s) => s.id !== id))
     },
   }
 }

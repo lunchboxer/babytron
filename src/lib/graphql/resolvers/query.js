@@ -67,4 +67,12 @@ export const Query = {
       where,
     })
   },
+  recentDiapers: async (_, { babyId, limit = 100 }, { prisma }) => {
+    const where = babyId && { baby: { id: babyId } }
+    return await prisma.diaper.findMany({
+      take: limit,
+      orderBy: { timestamp: 'desc' },
+      where,
+    })
+  },
 }

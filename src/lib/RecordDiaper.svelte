@@ -1,15 +1,32 @@
 <script>
+  import Error from '$lib/Error.svelte'
   import Input from '$lib/Input.svelte'
   import Form from '$lib/Form.svelte'
   import Textarea from '$lib/Textarea.svelte'
   import Checkbox from '$lib/Checkbox.svelte'
   import DashCard from '$lib/DashCard.svelte'
+  import DiaperStats from '$lib/DiaperStats.svelte'
+  import DiaperLastSummary from '$lib/DiaperLastSummary.svelte'
   import { diapers } from '$lib/data/diapers.js'
   import { notifications } from '$lib/notifications'
   import { faPoop, faWater, faPoo } from '@fortawesome/free-solid-svg-icons'
+  import { onMount } from 'svelte'
   import { printShortDateString } from '$lib/data/date-helpers.js'
 
   export let baby = {}
+  let loading = false
+  let errors = ''
+
+  onMount(async () => {
+    loading = true
+    try {
+      await diapers.get()
+    } catch (error) {
+      errors = error
+    } finally {
+      loading = false
+    }
+  })
 
   let date = printShortDateString()
   let time
@@ -48,19 +65,13 @@
 </script>
 
 <DashCard title="Diapers" icon={faPoo}>
-  <div class="stats stats-horizontal">
-    <div class="stat">
-      <div class="stat-title">Diapers</div>
-      <div class="stat-value text-primary">687</div>
-      <div class="stat-desc">Avg 6.8/day</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-title">Diapers</div>
-      <div class="stat-value">687</div>
-      <div class="stat-desc">Avg 6.8/day</div>
-    </div>
-  </div>
+  <Error {errors} />
+  {#if loading}
+    <p>...Loading diaper data</p>
+  {:else}
+    <DiaperStats />
+    <DiaperLastSummary />
+  {/if}
   {#if soiled}
     <Form {onSubmit} {onReset} submitLabel="Save Diaper">
       <Input type="date" bind:value={date} label="Date" required />
