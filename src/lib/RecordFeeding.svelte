@@ -32,11 +32,12 @@
   }
 
   const averageDuration = (feedings) => {
-    const sum = feedings.reduce(
+    const doneFeedings = feedings.filter((f) => f.end)
+    const sum = doneFeedings.reduce(
       (a, b) => a + (new Date(b.end).getTime() - new Date(b.start).getTime()),
       0,
     )
-    return Math.round(sum / (feedings.length * 60 * 1000))
+    return Math.round(sum / (doneFeedings.length * 60 * 1000))
   }
   const totalTimeToday = (feedings) => {
     let duration = 0

@@ -9,7 +9,6 @@
     const startDateObject = new Date(feeding.end)
     return formatDistanceToNow(startDateObject)
   }
-  console.log($latestFeeding)
 </script>
 
 {#if $latestFeeding}
