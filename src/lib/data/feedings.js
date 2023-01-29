@@ -49,27 +49,6 @@ function createFeedingStore() {
 
 export const feedings = createFeedingStore()
 
-// should this not be derived as well and just forget about baby.id
-// only store for selected baby
-// function createOpenFeedingStore() {
-//   const { subscribe, set, update } = writable({})
-//   return {
-//     subscribe,
-//     set,
-//     update,
-//     // Get Open feeding session //
-//     get: async (babyId) => {
-//       const response = await request(OPEN_FEEDING, { babyId })
-//       update((existing) => {
-//         existing[babyId] = response.openFeeding
-//         return { ...existing }
-//       })
-//     },
-//   }
-// }
-
-// export const openFeeding = createOpenFeedingStore()
-
 export const openFeeding = derived(feedings, ($feedings) =>
   $feedings.find((feeding) => !feeding.end),
 )

@@ -16,6 +16,7 @@
     )
     return Math.round(sum / (doneFeedings.length * 60 * 1000))
   }
+
   const totalTimeToday = (feedings) => {
     let duration = 0
     for (const feeding of allTodayFeedings(feedings)) {

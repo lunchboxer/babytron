@@ -59,4 +59,12 @@ export const Query = {
       where,
     })
   },
+  recentSleeps: async (_, { babyId, limit = 100 }, { prisma }) => {
+    const where = babyId && { baby: { id: babyId } }
+    return await prisma.sleep.findMany({
+      take: limit,
+      orderBy: { start: 'desc' },
+      where,
+    })
+  },
 }

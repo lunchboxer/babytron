@@ -16,8 +16,8 @@ type Mutation {
   createDiaper(input: CreateDiaperInput!): Diaper
   deleteDiaper(id: ID!): Diaper
   createSleep(input: CreateSleepInput!): Sleep
+  updateSleep(input: UpdateSleepInput!): Sleep
   deleteSleep(id: ID!): Sleep
-  closeSleep(input: CloseSleepInput!): Sleep
   createFeeding(input: CreateFeedingInput!): Feeding
   updateFeeding(input: UpdateFeedingInput!): Feeding
   deleteFeeding(id: ID!): Feeding
@@ -32,6 +32,7 @@ type Query {
   baby(id: ID!): Baby
   openSleep(babyId: ID!): Sleep
   openFeeding(babyId: ID!): Feeding
+  recentSleeps(babyId: ID, limit: Int): [Sleep]
   recentFeedings(babyId: ID, limit: Int): [Feeding]
 }
 
@@ -201,9 +202,10 @@ input CreateSleepInput {
   notes: String
 }
 
-input CloseSleepInput {
+input UpdateSleepInput {
   id: ID!
-  end: DateTime!
+  end: DateTime
+  start: DateTime
   wakeReason: String
   notes: String
 }

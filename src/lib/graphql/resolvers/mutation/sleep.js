@@ -1,6 +1,7 @@
 import { GraphQLError } from 'graphql'
 
 const timestampMustBePast = (timestamp) => {
+  if (!timestamp) return
   const now = new Date()
   const dateObject = new Date(timestamp)
   if (dateObject > now) {
@@ -53,19 +54,23 @@ export const sleep = {
       },
     })
   },
-  closeSleep: async (_, { input }, context) => {
-    const { end, id, wakeReason, notes } = input
-    const openSleep = await context.prisma.sleep.findFirst({ where: { id } })
-    if (!openSleep) {
+  updateSleep: async (_, { input }, context) => {
+    const { end, start, id, wakeReason, notes } = input
+    const oldSleep = await context.prisma.sleep.findFirst({ where: { id } })
+    if (!oldSleep) {
       throw new GraphQLError(
-        'The sleep period you are trying to close was not found.',
+        'The sleep period you are trying to update was not found.',
       )
     }
     timestampMustBePast(end)
-    noEndBeforeStart(openSleep.start, end)
+    timestampMustBePast(start)
+    const newStart = start || oldSleep.start
+    const newEnd = end || oldSleep.end
+    noEndBeforeStart(newStart, newEnd)
     return context.prisma.sleep.update({
       where: { id },
       data: {
+        start,
         end,
         notes,
         wakeReason,

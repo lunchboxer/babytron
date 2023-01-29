@@ -1,11 +1,11 @@
-query OpenSleep($babyId: ID!) {
-  openSleep(babyId: $babyId) {
+query RecentSleeps($babyId: ID!) {
+  recentSleeps(babyId: $babyId) {
     ...AllSleepFields
   }
 }
 
-mutation CloseSleep($input: CloseSleepInput!) {
-  closeSleep(input: $input) {
+mutation UpdateSleep($input: UpdateSleepInput!) {
+  updateSleep(input: $input) {
     ...AllSleepFields
   }
 }
