@@ -1,5 +1,5 @@
-query OpenFeeding($babyId: ID!) {
-  openFeeding(babyId: $babyId) {
+query RecentFeedings($babyId: ID, $limit: Int) {
+  recentFeedings(babyId: $babyId, limit: $limit) {
     ...AllFeedingFields
   }
 }

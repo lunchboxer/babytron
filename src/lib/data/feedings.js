@@ -1,12 +1,11 @@
-import { writable, get } from 'svelte/store'
+import { writable, derived } from 'svelte/store'
 import { request } from '$graphql/client.js'
 import {
   CREATE_FEEDING,
   UPDATE_FEEDING,
   DELETE_FEEDING,
-  OPEN_FEEDING,
+  RECENT_FEEDINGS,
 } from '$graphql/feedings.gql'
-import { selectedBaby } from '$lib/data/babies.js'
 
 // simpler to only maintain for one baby
 function createFeedingStore() {
@@ -14,13 +13,14 @@ function createFeedingStore() {
   return {
     subscribe,
     set,
+    // Get //
+    get: async (babyId) => {
+      const response = await request(RECENT_FEEDINGS, { babyId })
+      set(response.recentFeedings)
+    },
     // Create //
     create: async (feeding) => {
       const response = await request(CREATE_FEEDING, { input: { ...feeding } })
-      openFeeding.update((existing) => {
-        existing[feeding.babyId] = response.createFeeding
-        return { ...existing }
-      })
       update((existing) => {
         return [...existing, response.createFeeding]
       })
@@ -38,44 +38,46 @@ function createFeedingStore() {
           return f
         }),
       )
-      if (response.updateFeeding?.end) {
-        openFeeding.update((existing) => {
-          if (existing[baby.id]?.id === feeding.id) delete existing[baby.id]
-          return { ...existing }
-        })
-      }
     },
     // Remove //
     remove: async (id) => {
       await request(DELETE_FEEDING, { id })
       update((existing) => existing.filter((f) => f.id !== id))
-      openFeeding.update((existing) => {
-        const baby = get(selectedBaby)
-        delete existing[baby.id]
-        return { ...existing }
-      })
     },
   }
 }
 
 export const feedings = createFeedingStore()
 
+// should this not be derived as well and just forget about baby.id
 // only store for selected baby
-function createOpenFeedingStore() {
-  const { subscribe, set, update } = writable({})
-  return {
-    subscribe,
-    set,
-    update,
-    // Get Open feeding session //
-    get: async (babyId) => {
-      const response = await request(OPEN_FEEDING, { babyId })
-      update((existing) => {
-        existing[babyId] = response.openFeeding
-        return { ...existing }
-      })
-    },
-  }
-}
+// function createOpenFeedingStore() {
+//   const { subscribe, set, update } = writable({})
+//   return {
+//     subscribe,
+//     set,
+//     update,
+//     // Get Open feeding session //
+//     get: async (babyId) => {
+//       const response = await request(OPEN_FEEDING, { babyId })
+//       update((existing) => {
+//         existing[babyId] = response.openFeeding
+//         return { ...existing }
+//       })
+//     },
+//   }
+// }
 
-export const openFeeding = createOpenFeedingStore()
+// export const openFeeding = createOpenFeedingStore()
+
+export const openFeeding = derived(feedings, ($feedings) =>
+  $feedings.find((feeding) => !feeding.end),
+)
+
+export const latestFeeding = derived(feedings, ($feedings) => {
+  let mostRecent = $feedings[0]
+  for (const feeding of $feedings) {
+    mostRecent = feeding?.start > mostRecent?.start ? feeding : mostRecent
+  }
+  return mostRecent
+})

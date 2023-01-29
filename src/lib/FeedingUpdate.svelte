@@ -26,8 +26,9 @@
     feeding = { ...feedingBackup }
     showForm = false
   }
-
+  $: console.log('switched is', feeding.switched)
   const onSubmit = async () => {
+    console.log(feeding)
     feeding.end = new Date(`${endDate}, ${endTime}`).toISOString()
     await feedings.patch(feeding)
     notifications.add({

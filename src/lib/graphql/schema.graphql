@@ -32,6 +32,7 @@ type Query {
   baby(id: ID!): Baby
   openSleep(babyId: ID!): Sleep
   openFeeding(babyId: ID!): Feeding
+  recentFeedings(babyId: ID, limit: Int): [Feeding]
 }
 
 type User {

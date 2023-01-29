@@ -51,4 +51,12 @@ export const Query = {
         end: null,
       },
     }),
+  recentFeedings: async (_, { babyId, limit = 100 }, { prisma }) => {
+    const where = babyId && { baby: { id: babyId } }
+    return await prisma.feeding.findMany({
+      take: limit,
+      orderBy: { start: 'desc' },
+      where,
+    })
+  },
 }
