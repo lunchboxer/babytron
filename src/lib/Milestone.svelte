@@ -1,6 +1,7 @@
 <script>
   import { selectedBaby } from '$lib/data/babies.js'
   import { milestoneAchievements } from '$lib/data/milestone-achievements.js'
+  import { notifications } from '$lib/notifications'
 
   export let milestone = {}
 
@@ -11,14 +12,29 @@
     (a) => a.milestone.id === milestone.id,
   )
   $: checked = !!achievement
+
   const toggle = async () => {
     loading = true
     try {
-      achievement
-        ? await milestoneAchievements.unachieve(achievement.id)
-        : await milestoneAchievements.achieve($selectedBaby.id, milestone.id)
+      if (achievement) {
+        await milestoneAchievements.unachieve(achievement.id)
+        notifications.add({
+          type: 'success',
+          text: 'Milestone achievement removed',
+        })
+      } else {
+        await milestoneAchievements.achieve($selectedBaby.id, milestone.id)
+        notifications.add({
+          type: 'success',
+          text: 'Milestone achievement recorded',
+        })
+      }
     } catch (error) {
       errors = error
+      notifications.add({
+        type: 'success',
+        text: 'Milestone record failed',
+      })
     } finally {
       loading = false
     }

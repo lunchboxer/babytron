@@ -1,8 +1,13 @@
 <script>
   import DashCard from '$lib/DashCard.svelte'
-  import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
+  import {
+    faCalendarCheck,
+    faAngleRight,
+    faAngleLeft,
+  } from '@fortawesome/free-solid-svg-icons'
   import Error from '$lib/Error.svelte'
   import Milestone from '$lib/Milestone.svelte'
+  import Fa from 'svelte-fa'
   import { onMount } from 'svelte'
   import {
     milestones,
@@ -93,18 +98,17 @@
         >
       </p>
     </div>
-    <div class="btn-group grid grid-cols-2 my-4">
-      <button
-        class="btn btn-outline btn-sm"
-        disabled={!previous}
-        on:click={viewPrevious}
-      >
-        {#if previous}
+    <div class="btn-group grid grid-cols-2 my-4 w-full">
+      {#if previous}
+        <button class="btn btn-ghost btn-sm gap-2" on:click={viewPrevious}>
+          <Fa icon={faAngleLeft} />
           {previous} months
-        {/if}
-      </button>
-      <button class="btn btn-outline btn-sm" on:click={viewNext}>
-        {next} months
+        </button>
+      {:else}
+        <div />
+      {/if}
+      <button class="btn btn-ghost btn-sm gap-2" on:click={viewNext}>
+        {next} months <Fa icon={faAngleRight} />
       </button>
     </div>
   {/if}
