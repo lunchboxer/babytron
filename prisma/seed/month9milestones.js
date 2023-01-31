@@ -1,0 +1,80 @@
+export const month9Milestones = [
+  {
+    id: '9mSEL1',
+    monthsAge: 9,
+    category: 'SEL',
+    text: 'Is shy, clingy, or fearful around strangers',
+  },
+  {
+    id: '9mSEL2',
+    monthsAge: 9,
+    category: 'SEL',
+    text: 'Shows several facial expressions, like happy, sad, angry, and surprised',
+  },
+  {
+    id: '9mSEL3',
+    monthsAge: 9,
+    category: 'SEL',
+    text: 'Looks when you call his/her name',
+  },
+  {
+    id: '9mSEL4',
+    monthsAge: 9,
+    category: 'SEL',
+    text: 'Reacts when you leave (looks, reaches for you, or cries)',
+  },
+  {
+    id: '9mSEL5',
+    monthsAge: 9,
+    category: 'SEL',
+    text: 'Smiles or laughs when you play peek-a-boo',
+  },
+  {
+    id: '9mLANG1',
+    monthsAge: 9,
+    category: 'LANG',
+    text: 'Makes different sounds like “mamamama” and “babababa”',
+  },
+  {
+    id: '9mLANG2',
+    monthsAge: 9,
+    category: 'LANG',
+    text: 'Lifts arms up to be picked up',
+  },
+  {
+    id: '9mCOG1',
+    monthsAge: 9,
+    category: 'COG',
+    text: 'Looks for objects when dropped out of sight (like his/her spoon or toy)',
+  },
+  {
+    id: '9mCOG2',
+    monthsAge: 9,
+    category: 'COG',
+    text: 'Bangs two things together',
+  },
+  {
+    id: '9mPHYS1',
+    monthsAge: 9,
+    category: 'PHYS',
+    text: 'Gets to a sitting position independently',
+  },
+  {
+    id: '9mPHYS2',
+    monthsAge: 9,
+    category: 'PHYS',
+    text: 'Moves things from one hand to the other',
+  },
+  {
+    id: '9mPHYS3',
+    monthsAge: 9,
+    category: 'PHYS',
+    text: 'Uses fingers to “rake” food towards self',
+  },
+  {
+    id: '9mPHYS4',
+    monthsAge: 9,
+    category: 'PHYS',
+    text: 'Sits without support',
+  },
+]

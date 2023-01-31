@@ -15,7 +15,7 @@
   <div class="stats stats-horizontal">
     <div class="stat">
       <div class="stat-title">Wet:Dirty</div>
-      <div class="stat-value text-primary">
+      <div class="stat-value">
         {wetDiapers.length}:{dirtyDiapers.length}
       </div>
     </div>

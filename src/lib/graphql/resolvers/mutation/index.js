@@ -4,6 +4,7 @@ import { measurement } from './measurement.js'
 import { diaper } from './diaper.js'
 import { sleep } from './sleep.js'
 import { feeding } from './feeding.js'
+import { milestoneAchievement } from './milestone-achievement.js'
 
 export const Mutation = {
   ...user,
@@ -12,4 +13,5 @@ export const Mutation = {
   ...diaper,
   ...sleep,
   ...feeding,
+  ...milestoneAchievement,
 }

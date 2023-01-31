@@ -41,7 +41,7 @@
     <div class="stat">
       <div class="stat-title">Today</div>
       <div class="stat-value text-3xl">
-        ×{allTodayFeedings(feedings).length}
+        × {allTodayFeedings(feedings).length}
       </div>
       <div class="stat-desc">{totalTimeToday(feedings)} minutes total</div>
     </div>

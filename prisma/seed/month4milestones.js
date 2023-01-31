@@ -1,0 +1,80 @@
+export const month4Milestones = [
+  {
+    id: '4mSEL1',
+    monthsAge: 4,
+    category: 'SEL',
+    text: 'Smiles on his/her own to get your attention',
+  },
+  {
+    id: '4mSEL2',
+    monthsAge: 4,
+    category: 'SEL',
+    text: 'Chuckles (not yet a full laugh) when you try to make him/her laugh',
+  },
+  {
+    id: '4mSEL3',
+    monthsAge: 4,
+    category: 'SEL',
+    text: 'Looks at you, moves, or makes sounds to get or keep your attention',
+  },
+  {
+    id: '4mLANG1',
+    monthsAge: 4,
+    category: 'LANG',
+    text: 'Makes sounds like “oooo”, “aahh” (cooing)',
+  },
+  {
+    id: '4mLANG2',
+    monthsAge: 4,
+    category: 'LANG',
+    text: 'Makes sounds back when you talk to him/her',
+  },
+  {
+    id: '4mLANG3',
+    monthsAge: 4,
+    category: 'LANG',
+    text: 'Turns head towards the sound of your voice',
+  },
+  {
+    id: '4mCOG1',
+    monthsAge: 4,
+    category: 'COG',
+    text: 'If hungry, opens mouth upon seeing breast or bottle',
+  },
+  {
+    id: '4mCOG2',
+    monthsAge: 4,
+    category: 'COG',
+    text: 'Looks at own hands with interest',
+  },
+  {
+    id: '4mPHYS1',
+    monthsAge: 4,
+    category: 'PHYS',
+    text: 'Holds head steady without support when you are holding him/her',
+  },
+  {
+    id: '4mPHYS2',
+    monthsAge: 4,
+    category: 'PHYS',
+    text: 'Holds a toy when you put it in his hand',
+  },
+  {
+    id: '4mPHYS3',
+    monthsAge: 4,
+    category: 'PHYS',
+    text: 'Uses his/her arm to swing at toys',
+  },
+  {
+    id: '4mPHYS4',
+    monthsAge: 4,
+    category: 'PHYS',
+    text: 'Brings hands to mouth',
+  },
+  {
+    id: '4mPHYS5',
+    monthsAge: 4,
+    category: 'PHYS',
+    text: 'Pushes up onto elbows/forearms when on tummy',
+  },
+]

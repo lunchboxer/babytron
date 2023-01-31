@@ -1,0 +1,92 @@
+export const month60Milestones = [
+  {
+    id: '60mSEL1',
+    monthsAge: 60,
+    category: 'SEL',
+    text: 'Follows rules or takes turns when playing games with other children',
+  },
+  {
+    id: '60mSEL2',
+    monthsAge: 60,
+    category: 'SEL',
+    text: 'Sings, dances, or acts for you',
+  },
+  {
+    id: '60mSEL3',
+    monthsAge: 60,
+    category: 'SEL',
+    text: 'Does simple chores at home, like matching socks or clearing the table after eating',
+  },
+  {
+    id: '60mLANG1',
+    monthsAge: 60,
+    category: 'LANG',
+    text: 'Tells a story (s)he heard or made up with at least two events. For example, a cat was stuck in a tree and a firefighter saved it',
+  },
+  {
+    id: '60mLANG2',
+    monthsAge: 60,
+    category: 'LANG',
+    text: 'Answers simple questions about a book or story after you read or tell it to him/her',
+  },
+  {
+    id: '60mLANG3',
+    monthsAge: 60,
+    category: 'LANG',
+    text: 'Keeps a conversation going with more than three back-and-forth exchanges',
+  },
+  {
+    id: '60mLANG4',
+    monthsAge: 60,
+    category: 'LANG',
+    text: 'Uses or recognizes simple rhymes (bat-cat, ball-tall)',
+  },
+  {
+    id: '60mCOG1',
+    monthsAge: 60,
+    category: 'COG',
+    text: 'Counts to 10',
+  },
+  {
+    id: '60mCOG2',
+    monthsAge: 60,
+    category: 'COG',
+    text: 'Names some numbers between 1 and 5 when you point to them',
+  },
+  {
+    id: '60mCOG3',
+    monthsAge: 60,
+    category: 'COG',
+    text: 'Uses words about time, like “yesterday”, “tomorrow”, “morning”, or “night”',
+  },
+  {
+    id: '60mCOG4',
+    monthsAge: 60,
+    category: 'COG',
+    text: 'Pays attention for 5 to 10 minutes during activities. For example, during story time or making arts and crafts (screen time does not count)',
+  },
+  {
+    id: '60mCOG5',
+    monthsAge: 60,
+    category: 'COG',
+    text: 'Writes some letters in her name',
+  },
+  {
+    id: '60mCOG6',
+    monthsAge: 60,
+    category: 'COG',
+    text: 'Names some letters when you point to them',
+  },
+  {
+    id: '60mPHYS1',
+    monthsAge: 60,
+    category: 'PHYS',
+    text: 'Buttons some buttons',
+  },
+  {
+    id: '60mPHYS2',
+    monthsAge: 60,
+    category: 'PHYS',
+    text: 'Hops on one foot',
+  },
+]

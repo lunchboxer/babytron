@@ -21,6 +21,11 @@ type Mutation {
   createFeeding(input: CreateFeedingInput!): Feeding
   updateFeeding(input: UpdateFeedingInput!): Feeding
   deleteFeeding(id: ID!): Feeding
+  logMilestoneAchievement(babyId: ID!, milestoneId: ID!): MilestoneAchievement
+  deleteMilestoneAchievement(
+    babyId: ID!
+    milestoneId: ID!
+  ): MilestoneAchievement
 }
 
 type Query {
@@ -37,6 +42,8 @@ type Query {
   recentDiapers(babyId: ID, limit: Int): [Diaper]
   weight(babyId: ID): Measurement
   length(babyId: ID): Measurement
+  milestoneAchievements(babyId: ID): [MilestoneAchievement]
+  milestones(input: MilestonesInput): [Milestone]
 }
 
 type User {
@@ -145,6 +152,29 @@ enum Breast {
   LEFT
   RIGHT
 }
+
+type Milestone {
+  id: ID!
+  monthsAge: Int!
+  category: MilestoneCategory!
+  text: String!
+  milestoneAchievements: [MilestoneAchievement]
+}
+
+enum MilestoneCategory {
+  SEL
+  LANG
+  COG
+  PHYS
+}
+
+type MilestoneAchievement {
+  id: ID!
+  baby: Baby
+  milestone: Milestone
+  timestamp: DateTime
+}
+
 input CreateUserInput {
   username: String!
   password: String!
@@ -233,4 +263,9 @@ input CreateFeedingInput {
   startedBreast: Breast
   switched: Boolean
   notes: String
+}
+
+input MilestonesInput {
+  category: MilestoneCategory
+  monthsAge: Int
 }

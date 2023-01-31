@@ -9,17 +9,17 @@ datasource db {
 }
 
 model User {
-  id                   String        @id @default(cuid())
-  email                String?       @unique
-  username             String        @unique
+  id                   String                 @id @default(cuid())
+  email                String?                @unique
+  username             String                 @unique
   name                 String?
   password             String
-  fatherTo             Baby[]        @relation("father")
-  motherTo             Baby[]        @relation("mother")
-  isAdmin              Boolean       @default(false)
-  isVerified           Boolean       @default(false)
-  createdAt            DateTime      @default(now())
-  updatedAt            DateTime      @updatedAt
+  fatherTo             Baby[]                 @relation("father")
+  motherTo             Baby[]                 @relation("mother")
+  isAdmin              Boolean                @default(false)
+  isVerified           Boolean                @default(false)
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
   diapersRecorded      Diaper[]
   sleepsRecorded       Sleep[]
   feedingsRecorded     Feeding[]
@@ -27,30 +27,32 @@ model User {
   medicationsRecorded  Medication[]
   notesRecorded        Note[]
   measurementsRecorded Measurement[]
+  achievementRecorded  MilestoneAchievement[]
 }
 
 model Baby {
-  id              String        @id @default(cuid())
-  name            String?
-  alternativeName String?
-  birthdate       String?
-  birthTime       String?
-  nickname        String?
-  dueDate         String?
-  gender          String?
-  mother          User?         @relation("mother", fields: [motherId], references: [id])
-  motherId        String?
-  father          User?         @relation("father", fields: [fatherId], references: [id])
-  fatherId        String?
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  measurements    Measurement[]
-  diapers         Diaper[]
-  sleeps          Sleep[]
-  feedings        Feeding[]
-  activities      Activity[]
-  medications     Medication[]
-  notes           Note[]
+  id                    String                 @id @default(cuid())
+  name                  String?
+  alternativeName       String?
+  birthdate             String?
+  birthTime             String?
+  nickname              String?
+  dueDate               String?
+  gender                String?
+  mother                User?                  @relation("mother", fields: [motherId], references: [id])
+  motherId              String?
+  father                User?                  @relation("father", fields: [fatherId], references: [id])
+  fatherId              String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  measurements          Measurement[]
+  diapers               Diaper[]
+  sleeps                Sleep[]
+  feedings              Feeding[]
+  activities            Activity[]
+  medications           Medication[]
+  notes                 Note[]
+  milestoneAchievements MilestoneAchievement[]
 }
 
 model Measurement {
@@ -148,4 +150,30 @@ model Note {
   text       String
   recordedBy User     @relation(fields: [userId], references: [id])
   userId     String
+}
+
+model Milestone {
+  id                    String                 @id
+  monthsAge             Int
+  category              MilestoneCategory
+  text                  String
+  milestoneAchievements MilestoneAchievement[]
+}
+
+enum MilestoneCategory {
+  SEL
+  LANG
+  COG
+  PHYS
+}
+
+model MilestoneAchievement {
+  id          String    @id @default(cuid())
+  baby        Baby      @relation(fields: [babyId], references: [id], onDelete: Cascade)
+  babyId      String
+  timestamp   DateTime  @default(now())
+  milestone   Milestone @relation(fields: [milestoneId], references: [id])
+  milestoneId String
+  recordedBy  User      @relation(fields: [userId], references: [id])
+  userId      String
 }

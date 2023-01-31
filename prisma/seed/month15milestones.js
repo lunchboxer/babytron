@@ -1,0 +1,80 @@
+export const month15Milestones = [
+  {
+    id: '15mSEL1',
+    monthsAge: 15,
+    category: 'SEL',
+    text: 'Copies other children while playing, like taking toys out of a container when another child does',
+  },
+  {
+    id: '15mSEL2',
+    monthsAge: 15,
+    category: 'SEL',
+    text: 'Shows you an object (s)he likes',
+  },
+  {
+    id: '15mSEL3',
+    monthsAge: 15,
+    category: 'SEL',
+    text: 'Claps when excited',
+  },
+  {
+    id: '15mSEL4',
+    monthsAge: 15,
+    category: 'SEL',
+    text: 'Hugs stuffed doll or other toy',
+  },
+  {
+    id: '15mSEL5',
+    monthsAge: 15,
+    category: 'SEL',
+    text: 'Shows you affection (hugs, cuddles, or kisses you)',
+  },
+  {
+    id: '15mLANG1',
+    monthsAge: 15,
+    category: 'LANG',
+    text: 'Tries to say one or two words besides “mama” or “dada,” like “ba” for ball or “da” for dog',
+  },
+  {
+    id: '15mLANG2',
+    monthsAge: 15,
+    category: 'LANG',
+    text: 'Looks at a familiar object when you name it',
+  },
+  {
+    id: '15mLANG3',
+    monthsAge: 15,
+    category: 'LANG',
+    text: 'Follows directions given with both a gesture and words. For example, he gives you a toy when you hold out your hand and say, “Give me the toy.”',
+  },
+  {
+    id: '15mLANG4',
+    monthsAge: 15,
+    category: 'LANG',
+    text: 'Points to ask for something or to get help',
+  },
+  {
+    id: '15mCOG1',
+    monthsAge: 15,
+    category: 'COG',
+    text: 'Tries to use things the right way, like a phone, cup, or book',
+  },
+  {
+    id: '15mCOG2',
+    monthsAge: 15,
+    category: 'COG',
+    text: 'Stacks at least two small objects, like blocks',
+  },
+  {
+    id: '15mPHYS1',
+    monthsAge: 15,
+    category: 'PHYS',
+    text: 'Takes a few steps on her/his own',
+  },
+  {
+    id: '15mPHYS2',
+    monthsAge: 15,
+    category: 'PHYS',
+    text: 'Uses fingers to feed self some food',
+  },
+]

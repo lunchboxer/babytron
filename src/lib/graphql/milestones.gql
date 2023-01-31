@@ -1,0 +1,12 @@
+query Milestones($input: MilestonesInput) {
+  milestones(input: $input) {
+    ...AllMilestoneFields
+  }
+}
+
+fragment AllMilestoneFields on Milestone {
+  id
+  category
+  monthsAge
+  text
+}

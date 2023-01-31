@@ -1,0 +1,12 @@
+query MilestoneAchievements($babyId: ID!) {
+  milestoneAchievements(babyId: $babyId) {
+    id
+    timestamp
+    baby {
+      id
+    }
+    milestone {
+      id
+    }
+  }
+}

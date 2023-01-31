@@ -1,0 +1,80 @@
+export const month24Milestones = [
+  {
+    id: '24mSEL1',
+    monthsAge: 24,
+    category: 'SEL',
+    text: 'Notices when others are hurt or upset, like pausing or looking sad when someone is crying',
+  },
+  {
+    id: '24mSEL2',
+    monthsAge: 24,
+    category: 'SEL',
+    text: 'Looks at your face to see how to react in a new situation',
+  },
+  {
+    id: '24mLANG1',
+    monthsAge: 24,
+    category: 'LANG',
+    text: 'Points to things in a book when you ask, like “Where is the bear?”',
+  },
+  {
+    id: '24mLANG2',
+    monthsAge: 24,
+    category: 'LANG',
+    text: 'Says at least two words together, like “More milk.”',
+  },
+  {
+    id: '24mLANG3',
+    monthsAge: 24,
+    category: 'LANG',
+    text: 'Points to at least two body parts when you ask him to show you',
+  },
+  {
+    id: '24mLANG4',
+    monthsAge: 24,
+    category: 'LANG',
+    text: 'Uses more gestures than just waving and pointing, like blowing a kiss or nodding yes',
+  },
+  {
+    id: '24mCOG1',
+    monthsAge: 24,
+    category: 'COG',
+    text: 'Holds something in one hand while using the other hand; for example, holding a container and taking the lid off',
+  },
+  {
+    id: '24mCOG2',
+    monthsAge: 24,
+    category: 'COG',
+    text: 'Tries to use switches, knobs, or buttons on a toy',
+  },
+  {
+    id: '24mCOG3',
+    monthsAge: 24,
+    category: 'COG',
+    text: 'Plays with more than one toy at the same time, like putting toy food on a toy plate',
+  },
+  {
+    id: '24mPHYS1',
+    monthsAge: 24,
+    category: 'PHYS',
+    text: 'Kicks a ball',
+  },
+  {
+    id: '24mPHYS2',
+    monthsAge: 24,
+    category: 'PHYS',
+    text: 'Runs',
+  },
+  {
+    id: '24mPHYS3',
+    monthsAge: 24,
+    category: 'PHYS',
+    text: 'Walks (not climbs) up a few stairs with or without help',
+  },
+  {
+    id: '24mPHYS4',
+    monthsAge: 24,
+    category: 'PHYS',
+    text: 'Eats with a spoon',
+  },
+]

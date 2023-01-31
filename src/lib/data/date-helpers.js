@@ -121,3 +121,10 @@ export const dateRelativeString = (date) => {
   }
   return dateObject.toDateString()
 }
+
+export function ageInMonths(birthdate) {
+  if (!birthdate) return
+  const dateObject = new Date(birthdate)
+  const day = differenceInCalendarDays(now, dateObject)
+  return Math.trunc(day / 30.437)
+}

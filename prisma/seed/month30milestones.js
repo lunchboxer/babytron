@@ -1,0 +1,92 @@
+export const month30Milestones = [
+  {
+    id: '30mSEL1',
+    monthsAge: 30,
+    category: 'SEL',
+    text: 'Plays next to other children and sometimes plays with them',
+  },
+  {
+    id: '30mSEL2',
+    monthsAge: 30,
+    category: 'SEL',
+    text: 'Shows you what he/she can do by saying, “Look at me!”',
+  },
+  {
+    id: '30mSEL3',
+    monthsAge: 30,
+    category: 'SEL',
+    text: 'Follows simple routines when told, like helping to pick up toys when you say, “It’s clean-up time.”',
+  },
+  {
+    id: '30mLANG1',
+    monthsAge: 30,
+    category: 'LANG',
+    text: 'Says about 50 words',
+  },
+  {
+    id: '30mLANG2',
+    monthsAge: 30,
+    category: 'LANG',
+    text: 'Says two or more words, with one action word, like “Doggie run”',
+  },
+  {
+    id: '30mLANG3',
+    monthsAge: 30,
+    category: 'LANG',
+    text: 'Names things in a book when you point and ask, “What is this?”',
+  },
+  {
+    id: '30mLANG4',
+    monthsAge: 30,
+    category: 'LANG',
+    text: 'Says words like “I,” “me,” or “we”',
+  },
+  {
+    id: '30mCOG1',
+    monthsAge: 30,
+    category: 'COG',
+    text: 'Uses things to pretend, like feeding a block to a doll as if it were food',
+  },
+  {
+    id: '30mCOG2',
+    monthsAge: 30,
+    category: 'COG',
+    text: 'Shows simple problem-solving skills, like standing on a small stool to reach something',
+  },
+  {
+    id: '30mCOG3',
+    monthsAge: 30,
+    category: 'COG',
+    text: 'Follows two-step instructions like “Put the toy down and close the door.”',
+  },
+  {
+    id: '30mCOG4',
+    monthsAge: 30,
+    category: 'COG',
+    text: 'Shows (s)he knows at least one color, like pointing to a red crayon when you ask, “Which one is red?”',
+  },
+  {
+    id: '30mPHYS1',
+    monthsAge: 30,
+    category: 'PHYS',
+    text: 'Uses hands to twist things, like turning doorknobs or unscrewing lids',
+  },
+  {
+    id: '30mPHYS2',
+    monthsAge: 30,
+    category: 'PHYS',
+    text: 'Takes some clothes off by himself, like loose pants or an open jacket',
+  },
+  {
+    id: '30mPHYS3',
+    monthsAge: 30,
+    category: 'PHYS',
+    text: 'Jumps off the ground with both feet',
+  },
+  {
+    id: '30mPHYS4',
+    monthsAge: 30,
+    category: 'PHYS',
+    text: 'Turns book pages, one at a time, when you read to him/her',
+  },
+]

@@ -97,4 +97,17 @@ export const Query = {
     })
     return lengths[0]
   },
+  milestoneAchievements: (_, { babyId }, { prisma }) =>
+    prisma.milestoneAchievement.findMany({
+      where: { baby: { id: babyId } },
+    }),
+  milestones: async (_, { input }, { prisma }) => {
+    const { category, monthsAge } = input
+    return prisma.milestone.findMany({
+      where: {
+        category,
+        monthsAge,
+      },
+    })
+  },
 }
