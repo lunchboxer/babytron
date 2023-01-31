@@ -13,6 +13,6 @@ export const milestoneAchievement = {
         },
       },
     }),
-  deleteMilestoneAchievement: async (_, { id }, { prisma }) =>
+  deleteMilestoneAchievement: (_, { id }, { prisma }) =>
     prisma.milestoneAchievement.delete({ where: { id } }),
 }

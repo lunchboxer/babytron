@@ -16,7 +16,9 @@
   export let loading = false
   let errors = ''
   let groupedMilestones
-  $: selectedAge = closestAge(baby.birthdate)
+  let selectedAge = closestAge(baby.birthdate)
+  $: next = nextAge(selectedAge)
+  $: previous = previousAge(selectedAge)
 
   onMount(async () => {
     loading = true
@@ -47,13 +49,26 @@
     })
   }
 
-  // get the closest group of milestones to current baby age
   // pick future age only
   function closestAge(birthdate) {
     const months = ageInMonths(birthdate)
     const closest = allMonthsAges.find((age) => age >= months)
     if (!closest) return allMonthsAges[-1]
     return closest
+  }
+  function nextAge(current) {
+    const currentIndex = allMonthsAges.indexOf(current)
+    return allMonthsAges[currentIndex + 1]
+  }
+  function previousAge(current) {
+    const currentIndex = allMonthsAges.indexOf(current)
+    return allMonthsAges[currentIndex - 1]
+  }
+  function viewNext() {
+    selectedAge = next
+  }
+  function viewPrevious() {
+    selectedAge = previous
   }
 </script>
 
@@ -65,13 +80,11 @@
     <div class="prose text-left w-full">
       <p>Achieved {$milestoneAchievements.length}/{$milestones.length}</p>
       <h3>{selectedAge} months</h3>
-      {#each allCategories as category}
+      {#each allCategories as category, i}
         <h4>{category.long} milestones</h4>
-        <ul>
-          {#each extractCategory(groupedMilestones[selectedAge], category.short) as milestone, i}
-            <Milestone {milestone} />
-          {/each}
-        </ul>
+        {#each extractCategory(groupedMilestones[selectedAge], category.short) as milestone, i}
+          <Milestone {milestone} />
+        {/each}
       {/each}
       <p class="text-xs">
         These items are what > 75% of children would be expected to reach. Taken
@@ -79,6 +92,20 @@
           >www.cdc.gov/ActEarly</a
         >
       </p>
+    </div>
+    <div class="btn-group grid grid-cols-2 my-4">
+      <button
+        class="btn btn-outline btn-sm"
+        disabled={!previous}
+        on:click={viewPrevious}
+      >
+        {#if previous}
+          {previous} months
+        {/if}
+      </button>
+      <button class="btn btn-outline btn-sm" on:click={viewNext}>
+        {next} months
+      </button>
     </div>
   {/if}
 </DashCard>
