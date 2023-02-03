@@ -110,4 +110,10 @@ export const Query = {
       },
     })
   },
+  recentMedications: (_, { babyId, limit = 100 }, { prisma }) =>
+    prisma.medication.findMany({
+      take: limit,
+      orderBy: { time: 'desc' },
+      where: { baby: { id: babyId } },
+    }),
 }

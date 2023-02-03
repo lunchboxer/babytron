@@ -41,6 +41,7 @@ type Query {
   length(babyId: ID): Measurement
   milestoneAchievements(babyId: ID): [MilestoneAchievement]
   milestones(input: MilestonesInput): [Milestone]
+  recentMedications(babyId: ID, limit: Int): [Medication]
 }
 
 type User {
@@ -170,6 +171,16 @@ type MilestoneAchievement {
   baby: Baby
   milestone: Milestone
   timestamp: DateTime
+}
+
+type Medication {
+  id: ID!
+  baby: Baby
+  time: DateTime
+  dosage: String
+  type: String
+  notes: String
+  recordedBy: User
 }
 
 input CreateUserInput {
