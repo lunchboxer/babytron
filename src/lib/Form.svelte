@@ -33,7 +33,7 @@
     disabled = true
     ++restart
     try {
-      await onSubmit()
+      onSubmit()
       errors = ''
       form && form.reset() // component may have unmounted by this time
     } catch (error) {
