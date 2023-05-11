@@ -4,11 +4,12 @@ import { createVerifier } from 'fast-jwt'
 
 import 'dotenv/config'
 
-const verify = createVerifier({ key: process.env.JWT_SECRET })
+
 
 export const getUserFromCookies = async (cookies) => {
   if (!cookies.token) return
   try {
+    const verify = createVerifier({ key: process.env.JWT_SECRET })
     const verifiedToken = verify(cookies.token)
     const userId = verifiedToken && verifiedToken.userId
     if (!userId) return
