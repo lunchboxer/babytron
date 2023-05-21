@@ -17,7 +17,7 @@ function createBabiesStore() {
     subscribe,
     set,
     // Get //
-    get: async function (id) {
+    get: async function(id) {
       if (id) {
         const response = await request(BABY, { id })
         this.updateOne(response.baby)
@@ -33,7 +33,7 @@ function createBabiesStore() {
       return response.createBaby
     },
     // Patch //
-    patch: async function (baby) {
+    patch: async function(baby) {
       const {
         father,
         mother,
@@ -52,7 +52,7 @@ function createBabiesStore() {
         }),
       )
     },
-    updateOne: function (baby) {
+    updateOne: function(baby) {
       update((existing) => {
         let sawBaby = false
         const previousBabies =
@@ -72,7 +72,7 @@ function createBabiesStore() {
       update((existing) => existing.filter((b) => b.id !== id))
     },
     // Unbirth - change birthdate to null //
-    unbirth: async function (id) {
+    unbirth: async function(id) {
       const newBaby = await request(UNBIRTH, { id })
       this.updateOne(newBaby)
     },
@@ -90,6 +90,6 @@ browser &&
 export const selectedBaby = derived(
   [babies, selectedBabyId],
   ([$babies, $selectedBabyId]) => {
-    return $babies.find((b) => b.id === $selectedBabyId)
+    return $babies?.find((b) => b.id === $selectedBabyId)
   },
 )
