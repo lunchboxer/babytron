@@ -4,7 +4,7 @@
 </script>
 
 {#if $navigating}
-  <div class="overlay" transition:fade>
+  <div class="overlay" transition:fade|global>
     <div class="overlay__inner">
       <div class="overlay__content">
         <div class="double">
