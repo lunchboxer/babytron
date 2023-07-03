@@ -20,7 +20,7 @@
   onMount(async () => {
     loading = true
     try {
-      await diapers.get()
+      await diapers.get(baby.id)
     } catch (error) {
       errors = error
     } finally {
