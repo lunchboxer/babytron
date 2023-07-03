@@ -8,7 +8,7 @@
     <div class="stat-title">Weight (kg)</div>
     <div class="stat-value">{$latestWeight?.value / 1000 || '--'}</div>
     <div class="stat-desc">
-      as of {dateRelativeString($latestWeight.timestamp)}
+      as of {dateRelativeString($latestWeight?.timestamp)}
     </div>
   </div>
 
@@ -17,7 +17,7 @@
     <div class="stat-value">{$latestLength?.value / 10 || '--'}</div>
     {#if $latestLength}
       <div class="stat-desc">
-        as of {dateRelativeString($latestLength.timestamp)}
+        as of {dateRelativeString($latestLength?.timestamp)}
       </div>
     {/if}
   </div>
