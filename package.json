@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
-    "@graphql-eslint/eslint-plugin": "^3.19.1",
+    "@graphql-eslint/eslint-plugin": "^3.19.3",
     "@sveltejs/adapter-auto": "^2.1.0",
     "@sveltejs/adapter-netlify": "^2.0.7",
     "@sveltejs/adapter-static": "^2.0.2",
