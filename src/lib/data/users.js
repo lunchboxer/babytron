@@ -17,7 +17,7 @@ function createUsersStore() {
     set,
     subscribe,
     // Get //
-    get: async function (id) {
+    get: async function(id) {
       if (id) {
         const response = await request(USER, { id })
         this.updateOne(response.user)
@@ -27,15 +27,15 @@ function createUsersStore() {
       response && set(response.users)
     },
     // Create //
-    create: async function (user) {
+    create: async function(user) {
       const response = await request(CREATE_USER, { input: { ...user } })
       update((existing) => [...existing, response.createUser])
       this.getCount()
     },
-    updateOne: async function (user) {
+    updateOne: async function(user) {
       const meUser = get(me)
-      if (user.id === meUser.id) {
-        await me.set({ ...user })
+      if (user?.id === meUser.id) {
+        me.set({ ...user })
       }
       update((existing) => {
         let sawUser = false
@@ -49,7 +49,7 @@ function createUsersStore() {
       })
     },
     // Patch //
-    patch: async function (user) {
+    patch: async function(user) {
       // probably need to clean user object before sending
       const { fatherTo, motherTo, createdAt, updatedAt, ...cleanUser } = user
       const response = await request(UPDATE_USER, {
@@ -58,7 +58,7 @@ function createUsersStore() {
       this.updateOne(response.updateUser)
     },
     // Remove //
-    remove: async function (id) {
+    remove: async function(id) {
       await request(DELETE_USER, { id })
       update((existing) => existing.filter((u) => u.id !== id))
       const meUser = get(me)
@@ -66,7 +66,7 @@ function createUsersStore() {
       this.getCount()
     },
     // Change Password //
-    changePassword: async function (id, oldPassword, newPassword) {
+    changePassword: async function(id, oldPassword, newPassword) {
       await request(CHANGE_PASSWORD, { id, oldPassword, newPassword })
     },
     // Get Count //

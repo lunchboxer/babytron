@@ -11,3 +11,4 @@ vite.config.ts.timestamp-*
 .log*
 *.db
 notes.org
+notes.md

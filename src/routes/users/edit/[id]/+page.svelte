@@ -13,7 +13,7 @@
   export let data = {}
   const { errors, loadUser } = data
   users.updateOne(loadUser)
-  $: user = $users.find((u) => u.id === loadUser.id)
+  $: user = $users.find((u) => u?.id === loadUser?.id)
 
   const onSubmit = async () => {
     await users.patch(user)
