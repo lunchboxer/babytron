@@ -2,12 +2,12 @@
   import { diapers } from '$lib/data/diapers.js'
   import { printShortDateString } from '$lib/data/date-helpers.js'
 
-  $: wetDiapers = $diapers.filter((d) => d.isWet)
-  $: dirtyDiapers = $diapers.filter((d) => d.isDirty)
+  $: wetDiapers = $diapers.filter((d) => d?.isWet)
+  $: dirtyDiapers = $diapers.filter((d) => d?.isDirty)
 
   const beginningOfToday = new Date(`${printShortDateString()}, 00:00:00`)
   $: allTodayDiapers = $diapers.filter(
-    (d) => d.timestamp > beginningOfToday.toISOString(),
+    (d) => d?.timestamp > beginningOfToday.toISOString(),
   )
 </script>
 
