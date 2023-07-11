@@ -6,7 +6,7 @@
   export let required = false
   export let description = ''
 
-  $: name = label.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
+  $: name = label.replaceAll(/\W+(.)/g, (match, chr) => chr.toUpperCase())
   $: descriptionId = `description${name}`
 
   function checkValidity() {

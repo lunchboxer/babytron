@@ -85,9 +85,9 @@
     <div class="prose text-left w-full">
       <p>Achieved {$milestoneAchievements.length}/{$milestones.length}</p>
       <h3>{selectedAge} months</h3>
-      {#each allCategories as category, i}
+      {#each allCategories as category, index}
         <h4>{category.long} milestones</h4>
-        {#each extractCategory(groupedMilestones[selectedAge], category.short) as milestone, i}
+        {#each extractCategory(groupedMilestones[selectedAge], category.short) as milestone, index}
           <Milestone {milestone} />
         {/each}
       {/each}

@@ -8,6 +8,6 @@ export function getObjectFromStorage(objectName) {
 
 export function getDateString(date) {
   const dateObject = new Date(date)
-  if (isNaN(dateObject)) return
+  if (dateObject.isNaN) return
   return dateObject.toUTCString()
 }

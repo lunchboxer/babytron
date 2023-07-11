@@ -16,7 +16,7 @@ export const printShortDateString = (date) => {
 export const gestationalAgeInDays = (dueDate) => {
   // take dueDate and find date 280 days before
   const date = new Date(dueDate)
-  if (isNaN(date)) return
+  if (date.isNaN) return
   const dayZero = subDays(date, 280)
   // return difference in days
   return differenceInCalendarDays(now, dayZero)
@@ -30,7 +30,7 @@ export const gestationalAgeInWeeksString = (dueDate) => {
 }
 export const daysToEDD = (dueDate) => {
   const targetDate = new Date(dueDate)
-  if (isNaN(targetDate)) return
+  if (targetDate.isNaN) return
   return differenceInCalendarDays(targetDate, now)
 }
 
@@ -75,13 +75,15 @@ export const ageStringFromBirthdate = (birthdate) => {
     ageString = `${month} months`
     const monthRemainder = Math.trunc(day % 30.437)
     if (monthRemainder > 0 && monthRemainder < 7 && month < 4) {
-      ageString += ` and ${monthRemainder} day${monthRemainder === 1 ? '' : 's'
-        }`
+      ageString += ` and ${monthRemainder} day${
+        monthRemainder === 1 ? '' : 's'
+      }`
     }
     if (monthRemainder >= 7) {
       const remainderWeeks = Math.trunc(monthRemainder / 7)
-      ageString += ` and ${remainderWeeks} week${remainderWeeks === 1 ? '' : 's'
-        }`
+      ageString += ` and ${remainderWeeks} week${
+        remainderWeeks === 1 ? '' : 's'
+      }`
     }
     return ageString
   }

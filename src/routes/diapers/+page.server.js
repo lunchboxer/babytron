@@ -4,7 +4,6 @@
 /** @type {import('./$types').PageServerLoad} */
 export async function load() {
   return {
-    diapers: await prisma.diapers.findMany()
-  };
+    // diapers: await prisma.diapers.findMany(),
+  }
 }
-

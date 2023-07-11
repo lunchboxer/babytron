@@ -1,5 +1,9 @@
 module.exports = {
-  extends: ['standard', 'plugin:unicorn/recommended'],
+  extends: [
+    'standard',
+    'plugin:unicorn/recommended',
+    'plugin:svelte/recommended',
+  ],
   parserOptions: {
     ecmaVersion: 2022,
     sourceType: 'module',
@@ -10,12 +14,8 @@ module.exports = {
     node: true,
   },
   ignorePatterns: ['**/dist', '*.html', 'schema.json'],
-  plugins: ['svelte3', 'security'],
+  plugins: ['svelte', 'security'],
   overrides: [
-    {
-      files: ['**.svelte'],
-      processor: 'svelte3/svelte3',
-    },
     {
       files: ['schema.graphql'],
       parser: '@graphql-eslint/eslint-plugin',
@@ -58,7 +58,7 @@ module.exports = {
     },
   ],
   rules: {
-    // 'unicorn/filename-case': 0,
+    'unicorn/filename-case': 0,
     'import/first': 0,
     //  'unicorn/no-nested-ternary': 'off',
     'space-before-function-paren': 0,

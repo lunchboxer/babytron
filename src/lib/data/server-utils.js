@@ -4,8 +4,6 @@ import { createVerifier } from 'fast-jwt'
 
 import 'dotenv/config'
 
-
-
 export const getUserFromCookies = async (cookies) => {
   if (!cookies.token) return
   try {

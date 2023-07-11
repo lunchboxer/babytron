@@ -2,11 +2,8 @@
   import Fa from 'svelte-fa'
   import {
     faPoo,
-    faWeightScale,
-    faRuler,
     faPersonBreastfeeding,
   } from '@fortawesome/free-solid-svg-icons'
-  export let baby = {}
 </script>
 
 <div class="stats stats-vertical w-auto sm:stats-horizontal shadow">

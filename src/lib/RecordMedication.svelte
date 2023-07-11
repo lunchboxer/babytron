@@ -4,7 +4,7 @@
   import Error from '$lib/Error.svelte'
   import { onMount } from 'svelte'
 
-  export let baby = {}
+  // export let baby = {}
 
   let loading = false
   let errors = ''

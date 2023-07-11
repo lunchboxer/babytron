@@ -6,7 +6,6 @@
   export let milestone = {}
 
   let loading = false
-  let errors = ''
 
   $: achievement = $milestoneAchievements.find(
     (a) => a.milestone.id === milestone.id,
@@ -30,7 +29,7 @@
         })
       }
     } catch (error) {
-      errors = error
+      console.error(error)
       notifications.add({
         type: 'success',
         text: 'Milestone record failed',

@@ -17,7 +17,6 @@
   let headCircumference = ''
   let dueDate = ''
   let born = false
-  let step = 1
 
   const onSubmit = async () => {
     const newBaby = await babies.create({
@@ -85,7 +84,6 @@
     headCircumference = ''
     gender = ''
     born = undefined
-    step = 1
   }
 </script>
 

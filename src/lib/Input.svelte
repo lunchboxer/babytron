@@ -19,8 +19,8 @@
   // $: name = label.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
   // name is kebab-case version of label, so labels need to be distinct
   $: name = label
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .replace(/[\s_]+/g, '-')
+    .replaceAll(/([a-z])([A-Z])/g, '$1-$2')
+    .replaceAll(/[\s_]+/g, '-')
     .toLowerCase()
   $: descriptionId = `description${name}`
 
