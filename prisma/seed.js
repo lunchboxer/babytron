@@ -12,11 +12,16 @@ async function main() {
   // }
 
   console.log(`Seeding ${milestones.length} milestones`)
-  const milestonesInserted = await prisma.milestone.createMany({
-    data: milestones,
-    skipDuplicates: true,
-  })
-  console.log(`Inserted ${milestonesInserted.count} new milestones`)
+  for (const milestone of milestones) {
+    await prisma.milestone.create({
+      data: milestone,
+    })
+  }
+  // const milestonesInserted = await prisma.milestone.createMany({
+  //   data: milestones,
+  //   skipDuplicates: true,
+  // })
+  // console.log(`Inserted ${milestonesInserted.count} new milestones`)
 }
 try {
   await main()
