@@ -4,8 +4,10 @@ generator client {
 
 datasource db {
   // provider = "sqlite"
-  provider = "cockroachdb"
+  // provider = "cockroachdb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model User {
@@ -23,7 +25,6 @@ model User {
   diapersRecorded      Diaper[]
   sleepsRecorded       Sleep[]
   feedingsRecorded     Feeding[]
-  activitiesRecorded   Activity[]
   medicationsRecorded  Medication[]
   notesRecorded        Note[]
   measurementsRecorded Measurement[]
@@ -49,7 +50,6 @@ model Baby {
   diapers               Diaper[]
   sleeps                Sleep[]
   feedings              Feeding[]
-  activities            Activity[]
   medications           Medication[]
   notes                 Note[]
   milestoneAchievements MilestoneAchievement[]
@@ -115,19 +115,6 @@ enum FeedingType {
   BOTTLEBREASTMILK
   BOTTLEFORMULA
   SOLIDFOOD
-}
-
-model Activity {
-  id          String    @id @default(cuid())
-  baby        Baby      @relation(fields: [babyId], references: [id], onDelete: Cascade)
-  babyId      String
-  startTime   DateTime?
-  endTime     DateTime?
-  description String
-  people      String[]
-  notes       String?
-  recordedBy  User      @relation(fields: [userId], references: [id])
-  userId      String
 }
 
 model Medication {
