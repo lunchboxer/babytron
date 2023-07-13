@@ -12,3 +12,5 @@ vite.config.ts.timestamp-*
 *.db
 notes.org
 notes.md
+exported*.json
+db.sqlite
