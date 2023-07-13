@@ -9,7 +9,7 @@
   export let data = {}
   onMount(async () => {
     // this could be optimized into one call
-    me.set($page.data.me)
+    me.set(data.me)
     babies.set(data.babies)
     userCount.set(data.userCount)
     ready = true
