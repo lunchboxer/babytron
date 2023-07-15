@@ -14,6 +14,7 @@
     faAddressCard,
     faPersonThroughWindow,
     faSliders,
+    faPersonBreastfeeding,
     faBaby,
   } from '@fortawesome/free-solid-svg-icons'
 
@@ -65,6 +66,11 @@
           icon={faPoop}
           label="Diapers"
           url="/diapers/{$selectedBaby.id}"
+        />
+        <NavItem
+          icon={faPersonBreastfeeding}
+          label="Feedings"
+          url="/feedings/{$selectedBaby.id}"
         />
       {/if}
       <NavItem
