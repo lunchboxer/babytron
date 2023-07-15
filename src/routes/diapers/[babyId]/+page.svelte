@@ -1,26 +1,8 @@
 <script>
   import { faWater, faPoo } from '@fortawesome/free-solid-svg-icons'
   import Fa from 'svelte-fa'
-  /** @type {import('./$types').PageData} */
+  import { formatDate } from '$lib/data/date-helpers.js'
   export let data = {}
-
-  // We'll first need to check the url param then fetch just the one baby.
-
-  const formatDate = (date) => {
-    if (date.isNaN) return '--'
-    // compare the date to the current date
-    // return if it is the same date
-    const now = new Date()
-    const nowDateString = now.toDateString()
-    const isToday = date.toDateString() === nowDateString
-    const time = date.toLocaleTimeString([], {
-      timeStyle: 'short',
-    })
-    if (isToday) {
-      return time
-    }
-    return `${time} ${date.toLocaleDateString([], { dateStyle: 'short' })}`
-  }
 </script>
 
 <h1>Diapers</h1>
