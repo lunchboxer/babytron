@@ -8,7 +8,7 @@
   export let action
 
   // mark link active if we are in any subdirectories
-  $: active = '/' + $page.route?.id?.split('/')[1] === url
+  $: active = $page.route?.id?.split('/')[1] === url.split('/')[1]
 </script>
 
 <li class="m-1" class:gap-2={icon}>
