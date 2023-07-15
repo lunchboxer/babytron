@@ -14,13 +14,12 @@
     const nowDateString = now.toDateString()
     const isToday = date.toDateString() === nowDateString
     const time = date.toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
+      timeStyle: 'short',
     })
     if (isToday) {
       return time
     }
-    return `${time} ${nowDateString}`
+    return `${time} ${date.toLocaleDateString([], { dateStyle: 'short' })}`
   }
 </script>
 
