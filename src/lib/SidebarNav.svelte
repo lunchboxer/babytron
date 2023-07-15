@@ -9,6 +9,7 @@
   import BabyName from '$lib/BabyName.svelte'
   import {
     faGauge,
+    faPoop,
     faUsers,
     faAddressCard,
     faPersonThroughWindow,
@@ -60,6 +61,11 @@
     {#if $me?.id}
       {#if $selectedBaby}
         <NavItem icon={faGauge} label="Dashboard" url="/" />
+        <NavItem
+          icon={faPoop}
+          label="Diapers"
+          url="/diapers/{$selectedBaby.id}"
+        />
       {/if}
       <NavItem
         count={$babies?.length}
