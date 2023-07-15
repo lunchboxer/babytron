@@ -8,17 +8,19 @@
 
   const formatDate = (date) => {
     if (date.isNaN) return '--'
-    const hours = date.getHours()
-    const minutes = date.getMinutes()
     // compare the date to the current date
     // return if it is the same date
     const now = new Date()
     const nowDateString = now.toDateString()
     const isToday = date.toDateString() === nowDateString
+    const time = date.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    })
     if (isToday) {
-      return `${hours}:${minutes}`
+      return time
     }
-    return `${hours}:${minutes} ${nowDateString}`
+    return `${time} ${nowDateString}`
   }
 </script>
 
@@ -53,7 +55,7 @@
               {/if}
             </td>
             <td>
-              {diaper.notes || '--'}
+              {diaper.notes || ''}
             </td>
             <td>
               {diaper.recordedBy.name}
