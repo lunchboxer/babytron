@@ -25,12 +25,12 @@
             <td>
               {formatDate(diaper.timestamp)}
             </td>
-            <td>
+            <td align="center">
               {#if diaper.isWet}
                 <Fa icon={faWater} />
               {/if}
             </td>
-            <td>
+            <td align="center">
               {#if diaper.isDirty}
                 <Fa icon={faPoo} />
               {/if}
