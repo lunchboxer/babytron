@@ -1,0 +1,66 @@
+query RefreshDashboard($babyId: ID!, $limit: Int) {
+  weight(babyId: $babyId) {
+    id
+    type
+    value
+    timestamp
+    baby {
+      id
+    }
+  }
+  length(babyId: $babyId) {
+    id
+    type
+    value
+    timestamp
+    baby {
+      id
+    }
+  }
+  recentSleeps(babyId: $babyId) {
+    id
+    wakeReason
+    start
+    end
+    notes
+    baby {
+      id
+    }
+    recordedBy {
+      id
+    }
+  }
+  recentDiapers(babyId: $babyId) {
+    id
+    isWet
+    isDirty
+    notes
+    timestamp
+    baby {
+      id
+    }
+  }
+  recentFeedings(babyId: $babyId, limit: $limit) {
+    id
+    baby {
+      id
+    }
+    start
+    end
+    notes
+    startedBreast
+    switched
+    type
+    volumeInMl
+    recordedBy {
+      id
+    }
+  }
+  milestoneAchievements(babyId: $babyId) {
+    id
+    timestamp
+    milestone {
+      id
+    }
+  }
+}

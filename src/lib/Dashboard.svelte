@@ -7,10 +7,19 @@
   import Milestones from '$lib/Milestones.svelte'
   import RecordMedication from '$lib/RecordMedication.svelte'
   import { ageStringFromBirthdate } from '$lib/data/date-helpers.js'
+  import DashboardRefresh from '$lib/DashboardRefresh.svelte'
+  import Error from '$lib/Error.svelte'
+  let errors = ''
 </script>
 
 <h1>Dashboard</h1>
-<p>Age: {ageStringFromBirthdate($selectedBaby.birthdate)}</p>
+<div class="flex w-full">
+  <span class="flex-auto">
+    Age: {ageStringFromBirthdate($selectedBaby.birthdate)}
+  </span>
+  <DashboardRefresh bind:errors />
+</div>
+<Error {errors} />
 
 <RecordMeasurement baby={$selectedBaby} />
 <RecordDiaper baby={$selectedBaby} />

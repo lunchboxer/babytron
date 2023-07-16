@@ -1,6 +1,5 @@
 <script>
   import { onMount } from 'svelte'
-  import { page } from '$app/stores'
   import { me } from '$lib/data/me.js'
   import { babies } from '$lib/data/babies.js'
   import { userCount } from '$lib/data/users.js'
