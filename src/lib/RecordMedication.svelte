@@ -4,7 +4,7 @@
   import Error from '$lib/Error.svelte'
   import { onMount } from 'svelte'
 
-  // export let baby = {}
+  export let baby = {}
 
   let loading = false
   let errors = ''
@@ -28,7 +28,7 @@
 <DashCard title="Medication" icon={faPrescriptionBottleMedical}>
   <Error {errors} />
   {#if loading}
-    <p>...loading milestones</p>
+    <p>...loading medication</p>
   {:else}
     <p>Baby took some medicine</p>
   {/if}

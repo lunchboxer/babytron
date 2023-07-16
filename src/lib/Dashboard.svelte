@@ -26,4 +26,4 @@
 <RecordSleep baby={$selectedBaby} />
 <RecordFeeding baby={$selectedBaby} />
 <Milestones baby={$selectedBaby} />
-<RecordMedication baby{$selectedBaby} />
+<RecordMedication baby={$selectedBaby} />
