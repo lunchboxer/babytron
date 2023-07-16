@@ -13,7 +13,6 @@
 
   let spin = false
   const refresh = async () => {
-    // reload measurements, diapers, sleeps, feedings, milestones
     spin = true
     try {
       const result = await request(REFRESH_DASHBOARD, {
@@ -23,7 +22,7 @@
       sleeps.set(result.recentSleeps)
       diapers.set(result.recentDiapers)
       feedings.set(result.recentFeedings)
-      milestoneAchievements.set(result.milestoneAchievments)
+      milestoneAchievements.set(result.milestoneAchievements)
       errors = ''
     } catch (error) {
       errors = error
@@ -33,6 +32,6 @@
   }
 </script>
 
-<button class="btn btn-circle btn-xs btn-outline" on:click={refresh}>
+<button class="btn btn-circle btn-sm btn-outline" on:click={refresh}>
   <Fa icon={faArrowsRotate} {spin} />
 </button>
