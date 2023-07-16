@@ -45,7 +45,7 @@
   }
 
   const onSubmit = async () => {
-    const timestamp = new Date().toISOString()
+    const timestamp = new Date(`${date}, ${time}`).toISOString()
     await diapers.create({
       isWet,
       isDirty,
