@@ -1,13 +1,13 @@
 <script>
   import { latestFeeding } from '$lib/data/feedings.js'
   import { timer } from '$lib/data/timer.js'
-  import { formatDistanceToNow } from 'date-fns'
+  import { formatDistanceToNowStrict } from 'date-fns'
 
   const clock = timer({ interval: 500 })
 
   const feedingDuration = (clock, feeding) => {
     const startDateObject = new Date(feeding.end)
-    return formatDistanceToNow(startDateObject)
+    return formatDistanceToNowStrict(startDateObject, { unit: 'minute' })
   }
 </script>
 
