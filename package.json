@@ -34,7 +34,7 @@
     "nanoid": "^4.0.2",
     "postcss": "^8.4.26",
     "postcss-load-config": "^4.0.1",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "prettier-plugin-svelte": "^2.10.1",
     "prisma": "^5.0.0",
     "stylelint-config-recommended": "^13.0.0",
