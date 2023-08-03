@@ -14,3 +14,5 @@ notes.org
 notes.md
 exported*.json
 db.sqlite
+drizzle
+drizzle.config.ts

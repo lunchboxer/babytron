@@ -4,14 +4,18 @@
 
   const typeToString = (type) => {
     switch (type) {
-      case 'BREASTBREASTMILK':
+      case 'BREASTBREASTMILK': {
         return 'milk from breast'
-      case 'BOTTLEFORMULA':
+      }
+      case 'BOTTLEFORMULA': {
         return 'formula'
-      case 'BOTTLEBREASTMILK':
+      }
+      case 'BOTTLEBREASTMILK': {
         return 'breastmilk by bottle'
-      case 'SOLIDFOOD':
+      }
+      case 'SOLIDFOOD': {
         return 'solid food'
+      }
     }
   }
 </script>
