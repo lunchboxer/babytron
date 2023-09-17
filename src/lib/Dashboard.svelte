@@ -5,7 +5,7 @@
   import RecordSleep from '$lib/RecordSleep.svelte'
   import RecordFeeding from '$lib/RecordFeeding.svelte'
   import Milestones from '$lib/Milestones.svelte'
-  import RecordMedication from '$lib/RecordMedication.svelte'
+  // import RecordMedication from '$lib/RecordMedication.svelte'
   import { ageStringFromBirthdate } from '$lib/data/date-helpers.js'
   import DashboardRefresh from '$lib/DashboardRefresh.svelte'
   import Error from '$lib/Error.svelte'
@@ -26,4 +26,4 @@
 <RecordSleep baby={$selectedBaby} />
 <RecordFeeding baby={$selectedBaby} />
 <Milestones baby={$selectedBaby} />
-<RecordMedication baby={$selectedBaby} />
+<!-- <RecordMedication baby={$selectedBaby} /> !-->
