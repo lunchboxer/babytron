@@ -9,16 +9,16 @@ function createMeStore() {
   return {
     set,
     subscribe,
-    login: async function (parameters) {
+    login: async function(parameters) {
       const response = await client('/api/login', parameters)
       set(response.user)
     },
-    signup: async function (parameters) {
+    signup: async function(parameters) {
       const response = await client('/api/signup', parameters)
       userCount.set(1)
       set(response.user)
     },
-    logout: async function () {
+    logout: async function() {
       await client('/api/logout')
       set({})
     },

@@ -14,6 +14,7 @@
   export let max = undefined
   export let step = 1
   export let onChange = () => {}
+
   let show = false
 
   // $: name = label.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
